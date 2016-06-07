@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,17 @@ namespace MovieStore.Controllers
 {
     public class HomeController : Controller
     {
+        MovieStoreEntities db = new MovieStoreEntities();
+        // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var users = db.Users;
+            return View("Error");
         }
-
-        public ActionResult About()
+        public ActionResult ShowIdan()
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(db.Users.ToList());
         }
     }
 }

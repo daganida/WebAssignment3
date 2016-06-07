@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MovieStore.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,10 +14,11 @@ namespace MovieStore
     {
         protected void Application_Start()
         {
+            Database.SetInitializer(new MovieStore.Models.MovieStoreInitializer());
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

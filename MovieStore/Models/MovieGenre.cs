@@ -7,17 +7,16 @@ using System.Web;
 
 namespace MovieStore.Models
 {
-    public class MovieOrder
+    public class MovieGenre
     {
         [Key]
         [Column(Order = 0)]
-        public int OrderId { get; set; }
+        public int MovieId { get; set; }
         [Key]
         [Column(Order = 1)]
-        public int MovieId { get; set; }
-        public int Amount { get; set; }
+        public int GenreId { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Genre Genre { get; set; }
         public virtual Movie Movie { get; set; }
     }
 }
