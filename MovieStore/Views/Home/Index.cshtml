@@ -1,24 +1,26 @@
-﻿@model IEnumerable<MovieStore.Models.User>
+﻿@model IEnumerable<MovieStore.Models.Movie>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Top 5 Box Office In Our Store</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Length)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserPassword)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsAdmin)
+            @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th></th>
     </tr>
@@ -26,19 +28,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserPassword)
+            @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsAdmin)
+            @Html.DisplayFor(modelItem => item.Amount)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
+     
     </tr>
 }
 

@@ -7,7 +7,7 @@ using System.Web;
 namespace MovieStore.Models
 {
     public class MovieStoreEntities : DbContext
-    {            
+    {
 
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -16,5 +16,17 @@ namespace MovieStore.Models
         public  DbSet<MovieOrder> MovieOrders { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<User> Users { get; set; }
+
+       
+
+
+     
     }
+
+
+
+
+
+
+
 }

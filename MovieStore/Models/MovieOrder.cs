@@ -19,5 +19,7 @@ namespace MovieStore.Models
 
         public virtual Order Order { get; set; }
         public virtual Movie Movie { get; set; }
+
+       
     }
 }

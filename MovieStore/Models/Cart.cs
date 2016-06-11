@@ -8,7 +8,7 @@ namespace MovieStore.Models
     public class Cart
     {
         public int CartId { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public int MovieId { get; set; }
         public int Count { get; set; }
 
