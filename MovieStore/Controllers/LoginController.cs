@@ -1,4 +1,5 @@
 ﻿using MovieStore.Models;
+using MovieStore.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,22 +25,19 @@ namespace MovieStore.Controllers
         [HttpPost]
         public ActionResult Index(Login logUser)
         {
-            var userList = db.Users.ToList();
-
             if (ModelState.IsValid)
             {
-                var chosenUser = db.Users.Where(a=>a.UserName.Equals(logUser.UserName) && a.Password.Equals(logUser.UserPassword)).ToList();
-                if (chosenUser.Count != 0)
+                var queryResults = db.Users.Where(a=>a.UserName.Equals(logUser.UserName) && a.Password.Equals(logUser.UserPassword)).ToList();
+                if (queryResults.Count == 1)
                 {
+                    var loggedUser = queryResults[0];
+                    CookieController.SetCookie("userId", loggedUser.UserId.ToString());
                     TempData["Success"] = "User was logged successfully.";
                     return View("~/Views/Home/Index.cshtml");
-                }               
+                }
             }
             ViewData["Error"] = "One or more cradentials do not match.";
             return View("Index");
-            
-         
-
         }
 
        

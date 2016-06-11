@@ -2,16 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using MovieStore;
 
 namespace MovieStore.Controllers
 {
-
     public class UserController : Controller
     {
         MovieStoreEntities db = new MovieStoreEntities();

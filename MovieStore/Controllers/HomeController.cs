@@ -1,4 +1,5 @@
 ﻿using MovieStore.Models;
+using MovieStore.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,8 +15,12 @@ namespace MovieStore.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            string loggedId = CookieController.GetCookie("userId");
+            if (loggedId!=null)
+            {
+               Console.WriteLine("user is logged - "+loggedId);
+            }
 
-         
             List<Movie> movieList = getMostFivePopularMovies(); 
    
             return View(movieList);
