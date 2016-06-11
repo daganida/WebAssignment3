@@ -26,12 +26,6 @@ namespace MovieStore.Controllers
           
 
         }
-
-
-
-
-
-       
         public  ListItemCollection LoadXML()
         {
             DropDownList DropDownList1 = new DropDownList();

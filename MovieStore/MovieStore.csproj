@@ -214,6 +214,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\SelectListHelper.cs" />
     <Compile Include="Utilities\Cookies\CookieController.cs" />
+    <Compile Include="ViewModel\TwoListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
