@@ -33,7 +33,7 @@ namespace MovieStore.Controllers
                     var loggedUser = queryResults[0];
                     CookieController.SetCookie("userId", loggedUser.UserId.ToString());
                     TempData["Success"] = "User was logged successfully.";
-                    return View("~/Views/Home/Index.cshtml");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             ViewData["Error"] = "One or more cradentials do not match.";
