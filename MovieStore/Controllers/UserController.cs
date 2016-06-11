@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using MovieStore;
+using System.Data;
+using System.Web.UI.WebControls;
 
 namespace MovieStore.Controllers
 {
@@ -19,39 +21,47 @@ namespace MovieStore.Controllers
         // GET: User
         public ActionResult Index()
         {
-            SelectList sl = initCountry();
             return View();
 
+          
 
         }
 
-        private SelectList initCountry()
+
+
+
+
+       
+        public  ListItemCollection LoadXML()
         {
-            SelectList ListCategories = new SelectList(new[]
-                            {
-                                new { Value = "1", Text = "Category 1" },
-                                new { Value = "2", Text = "Category 2" },
-                                new { Value = "3", Text = "Category 3" },
-                            }, "Value", "Text");
-
-            return ListCategories;
-            
-
-        }   
-        
-   
-
-        [HttpPost]
-        public ActionResult Register(FormCollection formVars)
-        {
-            if (ModelState.IsValid)
+            DropDownList DropDownList1 = new DropDownList();
+            string myXMLfile = Server.MapPath("~/countries.xml");
+            DataSet dsStudent = new DataSet();
+            try
+            {
+                dsStudent.ReadXml(myXMLfile);
+                DropDownList1.DataSource = dsStudent;
+                DropDownList1.DataValueField = "ID";
+                DropDownList1.DataTextField = "Name";
+                DropDownList1.DataBind();
+            }
+            catch (Exception ex)
             {
 
             }
-            return View();
-            
-           
+
+            return DropDownList1.Items;
+
         }
+      
+
+
+
+     
+        
+   
+
+       
 
     }  
 }

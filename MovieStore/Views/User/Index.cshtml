@@ -23,6 +23,15 @@
             </div>
         </div>
 
+        <div>
+        <form id="form1">
+            <div>
+                <asp:DropDownList ID="DropDownList1">
+                </asp:DropDownList>
+            </div>
+        </form>
+            </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -38,6 +47,10 @@
                 @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(x => x.Country, MovieStore.ViewModel.SelectListHelper.GetCountryList())
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -46,6 +59,8 @@
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
+   
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -54,6 +69,7 @@
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
         </div>
+      
 
         <div class="form-group">
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })

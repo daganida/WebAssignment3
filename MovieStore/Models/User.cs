@@ -68,6 +68,7 @@ namespace MovieStore.Models
 
 
 
+
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email address")]

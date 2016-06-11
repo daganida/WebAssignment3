@@ -87,6 +87,26 @@ namespace MovieStore.Models
                 context.MovieGenres.Add(mg);
             }
 
+            List<Country> Countries = new List<Country>()
+
+        {
+
+            new Country() { ID = 1, Name= "United States" },
+
+            new Country() { ID = 2, Name= "Canada" },
+
+            new Country() { ID = 3, Name= "UK" },
+
+            new Country() { ID = 4, Name= "China" },
+
+            new Country() { ID = 5, Name= "Japan" }
+
+        };
+            foreach (Country  c in Countries)
+            {
+                context.Countries.Add(c);
+            }
+
             List<Order> orderList = new List<Order>()
             {
                 new Order {OrderId = 1,UserId = 1,Date = DateTime.Now,TotalAmountValue = 40 },

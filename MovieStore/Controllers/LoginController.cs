@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MovieStore.Controllers
 {
-    public class LoginController : Controller
+    public  class  LoginController : Controller
     {
         MovieStoreEntities db = new MovieStoreEntities();
 
