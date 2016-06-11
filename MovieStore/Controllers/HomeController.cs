@@ -21,54 +21,89 @@ namespace MovieStore.Controllers
                Console.WriteLine("user is logged - "+loggedId);
             }
 
-            List<Movie> movieList = getMostFivePopularMovies(); 
+            List<Movie> movieList = getMostFivePopularMovies("TopFive");
+
    
             return View(movieList);
         }
 
-        private List<Movie> getMostFivePopularMovies()
+        
+        private List<Movie> getMostFivePopularMovies(string Case)
         {
+            List<Movie> solutionList = new List<Movie>();
             Data data = Data.getInstance();
             data.updateDictionary();
+            DateTime date;
             List<Movie> movieList = new List<Movie>();
             Dictionary<string, int> moviesRented = new Dictionary<string, int>();
             var movies = db.Movies;
             int count = db.MovieOrders.ToList().Count;
-            DateTime date = DateTime.Today.AddDays(-7);
-            var movieOrderList = db.MovieOrders.SqlQuery(@"SELECT * FROM dbo.MovieOrders INNER JOIN dbo.Orders on dbo.MovieOrders.OrderId = dbo.Orders.OrderId and Date >= {0}",date);
-
-
-            //for each movie we cound all orders
-            foreach (MovieOrder mo in movieOrderList)
+            if (Case.Equals("TopFive"))
             {
-                if (!moviesRented.ContainsKey(data.getDictionary()[mo.MovieId]))
-                {
-                    moviesRented.Add(data.getDictionary()[mo.MovieId], mo.Amount);
+                 date = DateTime.Today.AddDays(-7);
 
+                var movieOrderList = db.MovieOrders.SqlQuery(@"SELECT * FROM dbo.MovieOrders INNER JOIN dbo.Orders on dbo.MovieOrders.OrderId = dbo.Orders.OrderId and Date >= {0}", date);
+                //for each movie we cound all orders
+                foreach (MovieOrder mo in movieOrderList)
+                {
+                    if (!moviesRented.ContainsKey(data.getDictionary()[mo.MovieId]))
+                    {
+                        moviesRented.Add(data.getDictionary()[mo.MovieId], mo.Amount);
+
+                    }
+                    else moviesRented[data.getDictionary()[mo.MovieId]] += mo.Amount;
                 }
-                else moviesRented[data.getDictionary()[mo.MovieId]] += mo.Amount;           
+
+                List<KeyValuePair<string, int>> myList = moviesRented.ToList();
+
+                myList.Sort(
+                    delegate(KeyValuePair<string, int> pair1,
+                    KeyValuePair<string, int> pair2)
+                    {
+                        return pair2.Value.CompareTo(pair1.Value);
+                    }
+                );
+
+
+                 solutionList = new List<Movie>();
+                int counter = 0;
+                foreach (KeyValuePair<string, int> movie in myList)
+                {
+                    var MovieChosen = db.Movies.Where(a => a.Title.Equals(movie.Key)).ToList();
+                    solutionList.Add((Movie)MovieChosen[0]);
+                    counter++;
+                    if (counter >= 5)
+                        break;
+                }
             }
-
-            List<KeyValuePair<string,int>> myList = moviesRented.ToList();
-
-            myList.Sort(
-                delegate(KeyValuePair<string, int> pair1,
-                KeyValuePair<string, int> pair2)
-                {
-                    return pair2.Value.CompareTo(pair1.Value);
-                }
-            );
-
-
-            List<Movie> solutionList = new List<Movie>();
-            int counter = 0;
-            foreach (KeyValuePair<string, int> movie in myList)
+            else if (Case.Equals("TopFiveRecent"))
             {
-                var MovieChosen = db.Movies.Where(a => a.Title.Equals(movie.Key)).ToList();
-                solutionList.Add((Movie)MovieChosen[0]);
-                counter++;
-                if (counter >= 5)
-                    break;
+                date = DateTime.Today.AddDays(-30);
+
+                var movieOrderList = db.MovieOrders.SqlQuery(@"SELECT * FROM dbo.MovieOrders where Date >= {0}", date);
+
+                List<KeyValuePair<string, int>> myList = moviesRented.ToList();
+
+                myList.Sort(
+                    delegate(KeyValuePair<string, int> pair1,
+                    KeyValuePair<string, int> pair2)
+                    {
+                        return pair2.Value.CompareTo(pair1.Value);
+                    }
+                );
+
+
+                 solutionList = new List<Movie>();
+                int counter = 0;
+                foreach (KeyValuePair<string, int> movie in myList)
+                {
+                    var MovieChosen = db.Movies.Where(a => a.Title.Equals(movie.Key)).ToList();
+                    solutionList.Add((Movie)MovieChosen[0]);
+                    counter++;
+                    if (counter >= 5)
+                        break;
+                }
+
             }
 
 
