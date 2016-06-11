@@ -75,8 +75,14 @@ namespace MovieStore.Controllers
 
             return solutionList;
         }
-
-
+        public ActionResult redirectToLogin()
+        {
+            return RedirectToAction("Index","Login");
+        }
+        public ActionResult redirectToRegisteration()
+        {
+            return RedirectToAction("Index", "User");
+        }
 
     } 
 }
