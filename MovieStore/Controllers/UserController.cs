@@ -22,6 +22,7 @@ namespace MovieStore.Controllers
         public ActionResult Index()
         {
             ViewBag.CountryId = new SelectList(db.Countries, "ID", "Name");
+            
             return View();
 
           
@@ -50,11 +51,30 @@ namespace MovieStore.Controllers
         }
         [HttpPost]
 
-        public ActionResult Index(User u)
+        public ActionResult Index( User u)
         {
+            if (ModelState.IsValid)
+            {
+                User newUser = new User();
+                newUser.UserName = u.UserName;
+                newUser.Password = u.Password;
+                newUser.ConfirmPassword = u.ConfirmPassword;
+                newUser.CreditCardNumber = u.CreditCardNumber;
+                newUser.Email = u.Email;
+                newUser.FirstName = u.FirstName;
+                newUser.LastName = u.LastName;
+                newUser.Question = u.Question;
+                newUser.Answer = u.Answer;
+                newUser.City = u.City;
+                newUser.Address = u.Address;
+                newUser.Country = u.Country;
+                newUser.Cellular = u.Cellular;
+                newUser.Phone = u.Phone;
+                db.Users.Add(newUser);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Login");
 
-
-
+            }
 
             return View();
 
