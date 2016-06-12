@@ -2,7 +2,14 @@
 
 @{
     ViewBag.Title = "Index";
+    var TotalValue = (double)ViewBag.itemsTotalValue;
+    var TotalNumberOfDifferentItems = (int)ViewBag.itemsTotalDifferentProducts;
+    var userName = (string)ViewBag.cartOwner;
+
+   
+
 }
+@Html.ActionLink("Create New Cart Item", "Create")
 
 <h2>Index</h2>
 
@@ -33,11 +40,44 @@
             @Html.DisplayFor(modelItem => item.Count)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CartId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CartId }) |
+            @Html.ActionLink("Add", "Add", new { id=item.CartId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.CartId })
         </td>
     </tr>
 }
 
 </table>
+<br />
+<br />
+<br />
+<div style="width:50%;">
+    <table class="table">
+        <tr>
+            
+            <th style="text-align:center;width:33%;">User Name
+            </th>
+            <th style="text-align:center;width:33%;">
+                Total Number Of Different Products
+            </th>
+            <th style="text-align:center;width:33%;">
+                Total Value Of Cart
+            </th>
+        </tr>
+
+    </table>
+    <table class="table">
+        <tr>
+            <td style="text-align:center;width:33%;">
+                @ViewBag.cartOwner
+
+            </td>
+            <td style="text-align:center;width:33%;">
+                @ViewBag.itemsTotalDifferentProducts
+            </td>
+            <td style="text-align:center;width:33%;">
+                @ViewBag.itemsTotalValue
+            </td>
+</tr>
+
+    </table>
+</div>

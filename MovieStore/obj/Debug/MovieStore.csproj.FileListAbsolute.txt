@@ -43,50 +43,6 @@
 \\Mac\Home\Documents\Visual Studio 2013\Projects\MovieStore\MovieStore\obj\Debug\MovieStore.dll
 \\Mac\Home\Documents\Visual Studio 2013\Projects\MovieStore\MovieStore\obj\Debug\MovieStore.pdb
 \\Mac\Home\Documents\Visual Studio 2013\Projects\MovieStore\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache
-Z:\WebAssignment3\MovieStore\bin\MovieStore.dll.config
-Z:\WebAssignment3\MovieStore\bin\MovieStore.dll
-Z:\WebAssignment3\MovieStore\bin\MovieStore.pdb
-Z:\WebAssignment3\MovieStore\bin\Antlr3.Runtime.dll
-Z:\WebAssignment3\MovieStore\bin\EntityFramework.dll
-Z:\WebAssignment3\MovieStore\bin\EntityFramework.SqlServer.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Core.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Owin.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Host.SystemWeb.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.Cookies.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.OAuth.dll
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Web.Infrastructure.dll
-Z:\WebAssignment3\MovieStore\bin\Newtonsoft.Json.dll
-Z:\WebAssignment3\MovieStore\bin\Owin.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.Helpers.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.Mvc.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.Optimization.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.Razor.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Deployment.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.dll
-Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Razor.dll
-Z:\WebAssignment3\MovieStore\bin\WebGrease.dll
-Z:\WebAssignment3\MovieStore\bin\Antlr3.Runtime.pdb
-Z:\WebAssignment3\MovieStore\bin\EntityFramework.xml
-Z:\WebAssignment3\MovieStore\bin\EntityFramework.SqlServer.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Core.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Owin.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Host.SystemWeb.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.Cookies.xml
-Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.OAuth.xml
-Z:\WebAssignment3\MovieStore\bin\Newtonsoft.Json.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.Helpers.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.Mvc.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.Optimization.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.Razor.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Deployment.xml
-Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Razor.xml
-Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.dll
-Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.pdb
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\MovieStore.dll.config
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\MovieStore.dll
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\MovieStore.pdb
@@ -132,3 +88,47 @@ Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.pdb
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\obj\Debug\MovieStore.dll
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\obj\Debug\MovieStore.pdb
+Z:\WebAssignment3\MovieStore\bin\MovieStore.dll.config
+Z:\WebAssignment3\MovieStore\bin\MovieStore.dll
+Z:\WebAssignment3\MovieStore\bin\MovieStore.pdb
+Z:\WebAssignment3\MovieStore\bin\Antlr3.Runtime.dll
+Z:\WebAssignment3\MovieStore\bin\EntityFramework.dll
+Z:\WebAssignment3\MovieStore\bin\EntityFramework.SqlServer.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Core.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Owin.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Host.SystemWeb.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.Cookies.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.OAuth.dll
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Web.Infrastructure.dll
+Z:\WebAssignment3\MovieStore\bin\Newtonsoft.Json.dll
+Z:\WebAssignment3\MovieStore\bin\Owin.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.Helpers.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.Mvc.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.Optimization.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.Razor.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Deployment.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.dll
+Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Razor.dll
+Z:\WebAssignment3\MovieStore\bin\WebGrease.dll
+Z:\WebAssignment3\MovieStore\bin\Antlr3.Runtime.pdb
+Z:\WebAssignment3\MovieStore\bin\EntityFramework.xml
+Z:\WebAssignment3\MovieStore\bin\EntityFramework.SqlServer.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Core.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.AspNet.Identity.Owin.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Host.SystemWeb.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.Cookies.xml
+Z:\WebAssignment3\MovieStore\bin\Microsoft.Owin.Security.OAuth.xml
+Z:\WebAssignment3\MovieStore\bin\Newtonsoft.Json.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.Helpers.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.Mvc.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.Optimization.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.Razor.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Deployment.xml
+Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Razor.xml
+Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.dll
+Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.pdb
