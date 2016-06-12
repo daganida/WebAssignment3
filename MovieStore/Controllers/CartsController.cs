@@ -21,19 +21,25 @@ namespace MovieStore.Controllers
         // GET: Carts
         public ActionResult Index()
         {
+
             if (TempData["AmountMessage"] != null)
             {
 
                 ViewBag.errorAmount = TempData["AmountMessage"].ToString();
             }
             
-            //string loggedId = CookieController.GetCookie("userId");
-            string loggedId = "2";
+            string loggedId = CookieController.GetCookie("userId");
             var carts = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0}",loggedId);
             if (loggedId != null)
             {
                 setValueToCurrentUser(loggedId);
                 Console.WriteLine("user is logged - " + loggedId);
+                return View(carts.ToList());
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
             }
             /*
             ViewBag.itemsTotalValue = 100;
@@ -42,13 +48,11 @@ namespace MovieStore.Controllers
              * */
   
 
-            return View(carts.ToList());
         }
 
         private void setValueToCurrentUser(string loggedId)
         {
             int totalDifferentProducts = 0;
-            loggedId = "2";
             double totalAmountValue = 0;
             string userName = "";
             var userCart = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0} ",loggedId);
@@ -128,7 +132,7 @@ namespace MovieStore.Controllers
                 return RedirectToAction("Create");
             }
             //string userLoggedIn =CookieController.GetCookie("userId");
-            string userLoggedIn = "2";
+            string userLoggedIn = CookieController.GetCookie("userId");
             if (userLoggedIn != null)
             {
                 cart.UserId = Convert.ToInt32(userLoggedIn);
@@ -229,7 +233,7 @@ namespace MovieStore.Controllers
             double itemsValue = 0;
             int differentProducts = 0;
             User userAccount = null;
-            string userLoggedIn = "2";
+            string userLoggedIn = CookieController.GetCookie("userId");
             //first we need the user that is logged in
             if (ModelState.IsValid)
             {
@@ -278,7 +282,7 @@ namespace MovieStore.Controllers
 
         public ActionResult ConfirmTransaction()
         {
-            string userLoggedIn = "2";
+            string userLoggedIn = CookieController.GetCookie("userId");
             double totalOrderValue = 0;
             Order o = new Order()
             {
