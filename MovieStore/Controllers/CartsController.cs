@@ -122,7 +122,7 @@ namespace MovieStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CartId,UserId,MovieId,Count")] Cart cart)
+        public ActionResult Create(/*[Bind(Include = "CartId,UserId,MovieId,Count")]*/ Cart cart)
         {
      
             if (cart.Count > db.Movies.Find(cart.MovieId).Amount)

@@ -81,10 +81,11 @@ namespace MovieStore.Models
         public string CreditCardNumber { get; set; }
 
 
-        public string Question { get; set; }
         public string Answer { get; set; }
 
-        public string Country { get; set; }
+        public int CountryId { get; set; }
+
+        public int QuestionId { get; set; }
         public override string ToString()
         {
             return String.Format("UserId = {0}, UserName = {1} - UserPassword = {2}",this.UserId,this.UserName,this.Password);

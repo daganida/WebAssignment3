@@ -137,6 +137,21 @@ namespace MovieStore.Models
             {
                 context.MovieOrders.Add(mo);
             }
+            List<Question> Questions = new List<Question>()
+            {
+                new Question(){ QuestionId=1,Title = "Which particular animal scares you the most" },
+                new Question(){ QuestionId=2,Title = "What is your grandmother's name from you mother side?"  },
+                new Question(){ QuestionId=3,Title = "What was the name of your high school?" },
+                new Question(){ QuestionId=4,Title = "What is your grandmother's name from your father side "  },
+                new Question(){ QuestionId=5,Title = "What is the name of your best friend?"   },
+                new Question(){ QuestionId=6,Title = "What was your teacher name from A grade?" },
+                 new Question(){ QuestionId=7,Title = "Where were you born ?" },
+
+            };
+            foreach (Question q in Questions)
+            {
+                context.Questions.Add(q);
+            }
 
 
 
@@ -174,4 +189,5 @@ namespace MovieStore.Models
             }
         }
     }
+
 }
