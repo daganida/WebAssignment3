@@ -21,6 +21,7 @@ namespace MovieStore.Controllers
         // GET: User
         public ActionResult Index()
         {
+            ViewBag.CountryId = new SelectList(db.Countries, "ID", "Name");
             return View();
 
           
@@ -45,6 +46,17 @@ namespace MovieStore.Controllers
             }
 
             return DropDownList1.Items;
+
+        }
+        [HttpPost]
+
+        public ActionResult Index(User u)
+        {
+
+
+
+
+            return View();
 
         }
       
