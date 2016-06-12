@@ -5,6 +5,8 @@
     var TotalValue = (double)ViewBag.itemsTotalValue;
     var TotalNumberOfDifferentItems = (int)ViewBag.itemsTotalDifferentProducts;
     var userName = (string)ViewBag.cartOwner;
+    var Error = (string)ViewBag.errorAmount;
+
 
    
 
@@ -12,9 +14,12 @@
 @Html.ActionLink("Create New Cart Item", "Create")
 
 <h2>Index</h2>
+<p class="text-danger">@ViewBag.errorAmount</p>
+
 
 
 <table class="table">
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Movie.Title)
@@ -24,6 +29,8 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Count)
+
+
         </th>
         <th></th>
     </tr>
@@ -38,10 +45,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Count)
+            
+
+
         </td>
         <td>
-            @Html.ActionLink("Add", "Add", new { id=item.CartId }) |
+            @Html.ActionLink("Add", "Add", new { id=item.CartId })
+          
             @Html.ActionLink("Delete", "Delete", new { id=item.CartId })
+        
         </td>
     </tr>
 }
@@ -77,6 +89,7 @@
             <td style="text-align:center;width:33%;">
                 @ViewBag.itemsTotalValue
             </td>
+            
 </tr>
 
     </table>

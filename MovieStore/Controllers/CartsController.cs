@@ -10,6 +10,7 @@ using MovieStore.Models;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using MovieStore.Utilities;
+using System.Globalization;
 
 namespace MovieStore.Controllers
 {
@@ -20,6 +21,12 @@ namespace MovieStore.Controllers
         // GET: Carts
         public ActionResult Index()
         {
+            if (TempData["AmountMessage"] != null)
+            {
+
+                ViewBag.errorAmount = TempData["AmountMessage"].ToString();
+            }
+            
             //string loggedId = CookieController.GetCookie("userId");
             string loggedId = "2";
             var carts = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0}",loggedId);
@@ -65,6 +72,11 @@ namespace MovieStore.Controllers
         // GET: Carts/Create
         public ActionResult Create()
         {
+            if (TempData["AmountMessage"] != null)
+            {
+
+                ViewBag.errorAmount = TempData["AmountMessage"].ToString();
+            }
             ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "Title");
             ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName");
             return View();
@@ -84,10 +96,19 @@ namespace MovieStore.Controllers
             }
             int quantity = cart.Count;
             quantity++;
+            // in case there are no more items in the storage
+            if (quantity > db.Movies.Find(cart.MovieId).Amount)
+            {
+                string Error = String.Format("The amount in the storage for {0}  is not avaiable",Data.getInstance().getDictionary()[cart.MovieId]);
+                TempData["AmountMessage"] = Error;
+                return RedirectToAction("Index");
+            }
+            else
+            {
 
                 db.Database.ExecuteSqlCommand("UPDATE dbo.Carts SET Count = Count+1 WHERE CartId = {0}", id);
                 db.SaveChanges();
-                setValueToCurrentUser(cart.UserId.ToString());
+            }
             return RedirectToAction("Index");
 
         }
@@ -99,6 +120,13 @@ namespace MovieStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CartId,UserId,MovieId,Count")] Cart cart)
         {
+     
+            if (cart.Count > db.Movies.Find(cart.MovieId).Amount)
+            {
+                string Error = String.Format("The amount in the storage for {0}  is not avaiable", Data.getInstance().getDictionary()[cart.MovieId]);
+                TempData["AmountMessage"] = Error;
+                return RedirectToAction("Create");
+            }
             //string userLoggedIn =CookieController.GetCookie("userId");
             string userLoggedIn = "2";
             if (userLoggedIn != null)
@@ -108,14 +136,17 @@ namespace MovieStore.Controllers
                 cart.User = db.Users.Find(cart.UserId);
                 if (ModelState.IsValid)
                 {
+                  
                     //first we check if item already in the cart, if yes we just want 
                     //to add to quantity
                     bool isMovieInCart = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.MovieId = {0} and dbo.Carts.UserId = {1}", cart.MovieId, userLoggedIn).ToList().Count > 0;
-                    cart.CartId = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.MovieId = {0} and dbo.Carts.UserId = {1}", cart.MovieId, userLoggedIn).ToList()[0].CartId;
+               
 
                     //meaning the movie for the user is already in the cart, we want to increase amount.
                     if (isMovieInCart)
                     {
+                        var carts = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.MovieId = {0} and dbo.Carts.UserId = {1}", cart.MovieId, userLoggedIn);
+                        cart.CartId = carts.ToList()[0].CartId;
                         string command = String.Format("UPDATE dbo.Carts SET Count = Count + {0} WHERE CartId = {1}", cart.Count.ToString(),cart.CartId);
                         db.Database.ExecuteSqlCommand(command);
                         db.SaveChanges();
@@ -127,6 +158,7 @@ namespace MovieStore.Controllers
                         db.SaveChanges();
 
                     }
+                  
                     return RedirectToAction("Index");
                 }
             }
