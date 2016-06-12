@@ -2001,6 +2001,7 @@ textarea.input-lg {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
+  margin-left:125px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.428571429;
@@ -2015,6 +2016,8 @@ textarea.input-lg {
       -ms-user-select: none;
        -o-user-select: none;
           user-select: none;
+            margin-left:125px;
+
 }
 
 .btn:focus {
@@ -2093,6 +2096,7 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #428bca;
   border-color: #357ebd;
+  margin-left:125px;
 }
 
 .btn-primary:hover,

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "PaymentHandler";
+    ViewBag.TotalValue = (double)ViewBag.itemsTotalValue;
+    var TotalNumberOfDifferentItems = (int)ViewBag.itemsTotalDifferentProducts;
+    var userName = (string)ViewBag.cartOwner;
+    var firstName = (string)ViewBag.first;
+    var lastName = (string)ViewBag.last;
+    var mail = (string)ViewBag.mail;
+    var cellular = (string)ViewBag.cell;
+    var userAddress = (string)ViewBag.address;
+
+    
+
+}
+
+<h2>Payment Information</h2>
+
+
+     
+            <label><strong>User Name : </strong>@ViewBag.cartOwner</label> 
+            <br />
+            <label><strong>First Name :</strong>@ViewBag.first
+            </label>
+            <br />
+            <label><strong>Last Name :</strong>@ViewBag.last
+            </label>
+            <br />
+            <label><strong>Mail :</strong>@ViewBag.mail
+            </label>
+            <br />
+            <label><strong>Cellular :</strong>@ViewBag.cell
+            </label>
+            <br />
+            <label><strong>Address :</strong>@ViewBag.address
+            </label>
+            <br />
+            <label><strong>Total Different Items :</strong>@ViewBag.itemsTotalDifferentProducts
+            </label>
+            <br />
+            <label><strong>Total Value :</strong>@ViewBag.itemsTotalValue
+            </label>
+            <br />
+
+
+
+
+
+
+
+ 
+<test>@Html.ActionLink("Confirm Transaction", "ConfirmTransaction", "Carts", null, new { @class = "btn btn-primary btn-large" })</test>
+
+
+
+
+
+

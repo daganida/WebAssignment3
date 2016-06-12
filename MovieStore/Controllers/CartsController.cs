@@ -220,5 +220,115 @@ namespace MovieStore.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult PaymentHandler()
+        {
+            ViewBag.itemsTotalValue = 0;
+            ViewBag.itemsTotalDifferentProducts = 0;
+            ViewBag.cartOwner = "";
+            double itemsValue = 0;
+            int differentProducts = 0;
+            User userAccount = null;
+            string userLoggedIn = "2";
+            //first we need the user that is logged in
+            if (ModelState.IsValid)
+            {
+                var carts = db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0}", userLoggedIn);
+
+
+                //take all users cart by user Id
+                foreach (Cart c in carts)
+                {
+                    differentProducts++;
+                    var currMoviePrice = db.Movies.SqlQuery("Select * from dbo.Movies where dbo.Movies.MovieId = {0}", c.MovieId).ToList();
+                    itemsValue += c.Count * currMoviePrice[0].Price;
+                }
+                ViewBag.itemsTotalValue = itemsValue;
+                ViewBag.itemsTotalDifferentProducts = differentProducts;
+                int UserId = Convert.ToInt32(userLoggedIn);
+                userAccount = db.Users.Find(UserId);
+                ViewBag.cartOwner = db.Users.Find(UserId).UserName;
+
+                //first last mail cell address
+                ViewBag.first = userAccount.FirstName;
+                ViewBag.last = userAccount.LastName;
+                ViewBag.mail = userAccount.Email;
+                if (userAccount.Cellular == null)
+                {
+                    ViewBag.cell = "Wasn't Provide";
+                }
+                else
+                {
+                    ViewBag.cell = userAccount.Cellular;
+                }
+                if (userAccount.Address == null)
+                {
+                    ViewBag.address = "Wasn't Provide";
+
+                }
+                else
+                {
+
+                    ViewBag.address = userAccount.Address;
+                }
+                
+            }
+            return View();
+        }
+
+        public ActionResult ConfirmTransaction()
+        {
+            string userLoggedIn = "2";
+            double totalOrderValue = 0;
+            Order o = new Order()
+            {
+                Date = DateTime.Now,
+                UserId = Convert.ToInt32(userLoggedIn),
+            };
+           db.Orders.Add(o);
+            db.SaveChanges();
+            
+            if (ModelState.IsValid)
+            {
+                //now to reduce all items from database
+                IList<Cart> carts =(IList<Cart>) db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0}", userLoggedIn).ToList();
+
+                foreach (Cart c in carts)
+                {
+                    
+                    //we need to update MovieOrders,Orders,Cart,Movies
+
+                    //first lets remove from Movies.
+                    db.Database.ExecuteSqlCommand("UPDATE dbo.Movies SET Amount = Amount- {0} WHERE MovieId = {1}",c.Count,c.MovieId);
+                    var currMoviePrice = db.Movies.SqlQuery("Select * from dbo.Movies where dbo.Movies.MovieId = {0}", c.MovieId).ToList();
+                    totalOrderValue += c.Count * currMoviePrice[0].Price;
+
+                    //now we create new movieOrder for each cart
+                    MovieOrder mo = new MovieOrder()
+                    {
+                        OrderId = o.OrderId,Amount = c.Count,MovieId = c.MovieId
+                    };
+                    db.MovieOrders.Add(mo);
+                    //now we remove the cart.
+                    db.Carts.Remove(c);
+                    //now we add to orders
+                    //now we add remove from Cart         
+                }
+                
+                db.Database.ExecuteSqlCommand("UPDATE dbo.Orders SET TotalAmountValue = TotalAmountValue + {0} WHERE OrderId = {1}", totalOrderValue, o.OrderId);
+                db.SaveChanges();
+
+
+                
+
+            }
+
+            return RedirectToAction("Index");
+
+
+
+
+
+        }
     }
 }
