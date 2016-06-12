@@ -12,7 +12,9 @@ using System.Data;
 using System.Web.UI.WebControls;
 
 namespace MovieStore.Controllers
+
 {
+    [UserRole]
 
     public class UserController : Controller
     {

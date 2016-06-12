@@ -8,6 +8,7 @@ using System.Collections;
 namespace MovieStore.Controllers
 {
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+    [UserRole]
     public class ValidationController : Controller
     {
         string currUserName;

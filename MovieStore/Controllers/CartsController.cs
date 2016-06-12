@@ -14,6 +14,7 @@ using System.Globalization;
 
 namespace MovieStore.Controllers
 {
+    [UserRole]
     public class CartsController : Controller
     {
         private MovieStoreEntities db = new MovieStoreEntities();

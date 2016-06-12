@@ -10,6 +10,8 @@ using MovieStore.ViewModel;
 
 namespace MovieStore.Controllers
 {
+        [UserRole]
+
     public class HomeController : Controller
     {
         MovieStoreEntities db = new MovieStoreEntities();

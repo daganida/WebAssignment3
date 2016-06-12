@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace MovieStore.Controllers
+
 {
+    [UserRole]
     public  class  LoginController : Controller
     {
         MovieStoreEntities db = new MovieStoreEntities();
@@ -33,12 +35,14 @@ namespace MovieStore.Controllers
                     var loggedUser = queryResults[0];
                     CookieController.SetCookie("userId", loggedUser.UserId.ToString());
                     TempData["Success"] = "User was logged successfully.";
+                    ViewBag.loggedin = loggedUser.ToString();
                     return RedirectToAction("Index", "Home");
                 }
             }
             ViewData["Error"] = "One or more cradentials do not match.";
             return View("Index");
         }
+       
 
        
 
