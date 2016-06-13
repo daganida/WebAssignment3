@@ -42,6 +42,16 @@ namespace MovieStore.Controllers
             ViewData["Error"] = "One or more cradentials do not match.";
             return View("Index");
         }
+
+        public ActionResult MoveToResetPassword()
+        {
+
+            return RedirectToAction("Index", "ResetPassword");
+
+
+            
+
+        }
        
 
        
