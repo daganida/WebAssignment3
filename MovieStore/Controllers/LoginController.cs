@@ -46,10 +46,7 @@ namespace MovieStore.Controllers
         public ActionResult MoveToResetPassword()
         {
 
-            return RedirectToAction("Index", "ResetPassword");
-
-
-            
+            return RedirectToAction("Index", "ResetPassword");          
 
         }
        

@@ -9,7 +9,7 @@ namespace MovieStore.ViewModel
     public class NewPassword
     {
         [Required]
-        [StringLength(10, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
+        [StringLength(10, ErrorMessage = "The password must be at between 5 to 10 characters long.", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Display(Name = "New Password")]
         public string NewPass { get; set; }
