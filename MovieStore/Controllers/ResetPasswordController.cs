@@ -29,6 +29,10 @@ namespace MovieStore.Controllers
             {
                 ViewBag.Answer = TempData["Answer"].ToString();
             }
+              if (TempData["Error"] != null)
+              {
+                  ViewBag.errorMessage = TempData["Error"].ToString();
+              }
             return View();
         }
         [HttpPost]
@@ -81,23 +85,22 @@ namespace MovieStore.Controllers
                            
                             //meaning he was right about the question and the answer
                         }
-                        else if (u != null && user.Answer == null)
+                        else if (user.Answer == null || !user.Answer.ToLower().Equals(u.Answer.ToLower()))
                         {
+                            if (user.Answer != null)
+                            {
+                                message = String.Format("One or more cradentials is incorrect.");
+                                TempData["Error"] = message;
+                            }
                             currUserName = u.UserName;
                             var User = db.Users.SqlQuery("Select * from dbo.Users where dbo.Users.UserName = {0}", currUserName).ToList()[0];
                             int QuestionId = (int)((User)User).QuestionId;
                             string Question = db.Questions.SqlQuery("Select * from dbo.Questions where QuestionId = {0}", QuestionId).ToList()[0].Title;
                             TempData["Question"] = Question;
                             return RedirectToAction("Index");
-
-
                         }
-                        else
-                        {
-                            message = String.Format("One or more cradentials is incorrect.");
-                            ViewBag.errorMessage = message;
 
-                        }
+
 
                     }
 

@@ -26,6 +26,7 @@
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
+
         </div>
         }
         else {
@@ -34,8 +35,14 @@
         }
         @if (ViewBag.answer != null)
         {
-            <p style="margin-left:120px;" >Your password is : <strong class="text-success">@ViewBag.Answer</strong></p>
-    <test>@Html.ActionLink("Go To Login", "Index", "Login", null, new { @class = "btn btn-primary btn-large" })</test>
+            <div>
+                <p style="margin-left:120px;">Your password is : <strong class="text-success">@ViewBag.Answer</strong></p>
+                <br />
+                <test>@Html.ActionLink("Go To Login", "Index", "Login", null, new { @class = "btn btn-primary btn-large" })</test>
+
+            </div>
+
+
 
 
         }
@@ -60,17 +67,14 @@
         @if (ViewBag.answer == null) { 
 
         <div class="form-group">
+            <br />
+            <br />
             <div class="col-md-offset-2 col-md-10">
                 <input style="width:150px;margin-left:65px;" type="submit" value="continue" class="btn btn-primary" />
             </div>
         </div>
         }
         
-
-
- 
-
- 
     </div>
 }
 
