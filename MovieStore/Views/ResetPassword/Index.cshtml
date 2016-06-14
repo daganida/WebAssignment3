@@ -5,6 +5,7 @@
     ViewBag.Error = (string)ViewBag.errorMessage;
     ViewBag.question = (string)ViewBag.Question;
     ViewBag.answer = (string)ViewBag.Answer;
+    ViewBag.user = (string)ViewBag.User;
 }
 
 <h2>Index</h2>
@@ -18,6 +19,7 @@
         <p class="text-danger">@ViewBag.errorMessage</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @if(ViewBag.user == null){
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,33 +27,50 @@
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
+        }
+        else {
+            <label style="margin-left:120px;">UserName :<strong>@ViewBag.User</strong> </label>
+            
+        }
         @if (ViewBag.answer != null)
         {
-            <p style="margin-left:120px;" class="text-success">Your password is : <strong>@ViewBag.Answer</strong></p>
-            <br />
-            <br />
-            <test style="margin-left:120px;">@Html.ActionLink("", "PaymentHandler", "Carts", null, new { @class = "btn btn-primary btn-large" })</test>
+            <p style="margin-left:120px;" >Your password is : <strong class="text-success">@ViewBag.Answer</strong></p>
+    <test>@Html.ActionLink("Go To Login", "Index", "Login", null, new { @class = "btn btn-primary btn-large" })</test>
 
 
         }
         else if (ViewBag.question != null)
         {
-            <div style="margin-left:120px;">
-                <label class="label-primary">@ViewBag.Question</label>
+            <div >
+                <label style="margin-left:120px;">Question : <strong>@ViewBag.Question</strong></label>
+                <br />
+                <br />
             </div>
-            <div style = "margin-left:120px;" >
-              <label class="label-default">Answer:</label><input type="text">
-            </div>
+
+
+                @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                </div>
 
         }
-
- 
+        
+     
+        @if (ViewBag.answer == null) { 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input style="width:150px;margin-left:65px;" type="submit" value="continue" class="btn btn-primary" />
             </div>
         </div>
+        }
+        
+
+
+ 
+
+ 
     </div>
 }
 

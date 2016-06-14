@@ -135,3 +135,8 @@ Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.pdb
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.Mvc.dll
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.xml
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.Mvc.xml
+Z:\WebAssignment3\MovieStore\bin\PagedList.dll
+Z:\WebAssignment3\MovieStore\bin\PagedList.Mvc.dll
+Z:\WebAssignment3\MovieStore\bin\PagedList.xml
+Z:\WebAssignment3\MovieStore\bin\PagedList.Mvc.xml
+Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache

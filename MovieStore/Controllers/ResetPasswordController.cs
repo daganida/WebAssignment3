@@ -21,6 +21,14 @@ namespace MovieStore.Controllers
             if(TempData["Question"] != null) {
                 ViewBag.Question = TempData["Question"];
             }
+            if (TempData["User"] != null)
+            {
+                ViewBag.User = TempData["User"].ToString();
+            }
+              if (TempData["Answer"] != null)
+            {
+                ViewBag.Answer = TempData["Answer"].ToString();
+            }
             return View();
         }
         [HttpPost]
@@ -28,7 +36,18 @@ namespace MovieStore.Controllers
 
         public ActionResult Index(PasswordDelete user)
         {
+
+
             string message = "";
+            if (user.UserName != null)
+            {
+                HttpContext.Application["User"] = user.UserName;
+            }
+            if (user.UserName == null)
+            {
+                user.UserName = (string)HttpContext.Application["User"];
+            }
+
 
                 var userList = db.Users.SqlQuery("Select * from dbo.Users where dbo.Users.UserName = {0}",user.UserName);
                 if (userList.ToList().Count == 0)
@@ -39,12 +58,30 @@ namespace MovieStore.Controllers
                     ViewBag.errorMessage = message;
 
                 }
+
                 else
                 {
                     User u = db.Users.Find(userList.ToList()[0].UserId);
                     if (u != null)
                     {
-                        if (true)
+                        HttpContext.Application["User"] = u.UserName; 
+                        TempData["User"] = u.UserName;
+                        if (user.Answer != null && user.Answer.ToLower().Equals(u.Answer.ToLower()))
+                        {
+                            currUserName = null;
+                            TempData["Answer"] = u.Password;
+                            HttpContext.Application["User"] = null;
+                            var User = db.Users.SqlQuery("Select * from dbo.Users where dbo.Users.UserName = {0}", u.UserName).ToList()[0];
+                            int QuestionId = (int)((User)User).QuestionId;
+                            string Question = db.Questions.SqlQuery("Select * from dbo.Questions where QuestionId = {0}", QuestionId).ToList()[0].Title;
+                            TempData["Question"] = Question;
+                            TempData["User"] = u.UserName;
+                            return RedirectToAction("Index");
+
+                           
+                            //meaning he was right about the question and the answer
+                        }
+                        else if (u != null && user.Answer == null)
                         {
                             currUserName = u.UserName;
                             var User = db.Users.SqlQuery("Select * from dbo.Users where dbo.Users.UserName = {0}", currUserName).ToList()[0];
@@ -52,7 +89,8 @@ namespace MovieStore.Controllers
                             string Question = db.Questions.SqlQuery("Select * from dbo.Questions where QuestionId = {0}", QuestionId).ToList()[0].Title;
                             TempData["Question"] = Question;
                             return RedirectToAction("Index");
-                            //meaning he was right about the question and the answer
+
+
                         }
                         else
                         {
@@ -64,7 +102,6 @@ namespace MovieStore.Controllers
                     }
 
                 }
-                ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "Title");
                 return View();
             
         }
