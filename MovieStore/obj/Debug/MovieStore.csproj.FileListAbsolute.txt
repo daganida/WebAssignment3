@@ -85,7 +85,6 @@
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\System.Web.WebPages.xml
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\System.Web.WebPages.Deployment.xml
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\System.Web.WebPages.Razor.xml
-\\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\obj\Debug\MovieStore.dll
 \\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\obj\Debug\MovieStore.pdb
 Z:\WebAssignment3\MovieStore\bin\MovieStore.dll.config
@@ -132,4 +131,7 @@ Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Deployment.xml
 Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Razor.xml
 Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.dll
 Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.pdb
-Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.dll
+\\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.Mvc.dll
+\\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.xml
+\\Mac\Home\Documents\School\Semester F\Web\Assignment3\MovieStore\bin\PagedList.Mvc.xml
