@@ -11,8 +11,5 @@ namespace MovieStore.Models
 
         public int GenreId { get; set; }
         public string TItle { get; set; }
-
-        public virtual ICollection<MovieGenre> MovieGenres { get; set; }
-
     }
 }

@@ -7,12 +7,18 @@
     }
     <br />
     <br />
-    @using (Html.BeginForm("Index", "Movie", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
     {
-        <p>
-            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-            <input type="submit" value="Search" />
-        </p>
+        <fieldset>
+
+            <p>
+                Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                Genre: @Html.DropDownList("movieGenre", "All")
+                <input type="submit" value="Search" />
+            </p>
+
+        </fieldset>
+
     }
 
     <table class="table">
