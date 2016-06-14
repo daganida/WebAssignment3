@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
     ViewBag.Error = (string)ViewBag.errorMessage;
+    ViewBag.question = (string)ViewBag.Question;
+    ViewBag.answer = (string)ViewBag.Answer;
 }
 
 <h2>Index</h2>
@@ -11,7 +13,7 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <p class="text-danger">@ViewBag.errorMessage</p>
         <hr />
@@ -23,20 +25,27 @@
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Question</label>
-            <div class="col-md-10">
-                @Html.DropDownList("QuestionId", null, htmlAttributes: new { @class = "form-control" })
-            </div>
-        </div>
+        @if (ViewBag.answer != null)
+        {
+            <p style="margin-left:120px;" class="text-success">Your password is : <strong>@ViewBag.Answer</strong></p>
+            <br />
+            <br />
+            <test style="margin-left:120px;">@Html.ActionLink("", "PaymentHandler", "Carts", null, new { @class = "btn btn-primary btn-large" })</test>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+
+        }
+        else if (ViewBag.question != null)
+        {
+            <div style="margin-left:120px;">
+                <label class="label-primary">@ViewBag.Question</label>
             </div>
-        </div>
+            <div style = "margin-left:120px;" >
+              <label class="label-default">Answer:</label><input type="text">
+            </div>
+
+        }
+
+ 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -46,7 +55,5 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 

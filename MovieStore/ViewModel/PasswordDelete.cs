@@ -8,8 +8,6 @@ namespace MovieStore.ViewModel
     public class PasswordDelete
     {
         public string UserName { get; set; }
-        public string Answer { get; set; }
 
-        public int QuestionId { get; set; }
     }
 }
