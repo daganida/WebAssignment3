@@ -90,6 +90,8 @@ namespace MovieStore.Models
         {
             return String.Format("UserId = {0}, UserName = {1} - UserPassword = {2}",this.UserId,this.UserName,this.Password);
         }
+
+
  
         
 

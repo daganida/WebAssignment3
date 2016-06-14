@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using MovieStore;
 using System.Data;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace MovieStore.Controllers
 
@@ -27,9 +28,13 @@ namespace MovieStore.Controllers
             LoadXML();
             ViewBag.CountryId = new SelectList(db.Countries, "ID", "Name");
             ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "Title");
-            
+            var categories = db.Genres.Select(c => new
+            {
+                GenreId = c.GenreId,
+                Title = c.TItle
+            }).ToList();
+            ViewBag.GenreList = new MultiSelectList(categories, "GenreId", "Title");
 
-            
             return View();
 
           
@@ -69,6 +74,15 @@ namespace MovieStore.Controllers
 
         public ActionResult Index( User u)
         {
+            MultiSelectList l = ViewBag.GenreList;
+            IEnumerable listOfSelecttedValues = l.SelectedValues;
+            List<string> genres = new List<string>();
+            foreach (var genre in listOfSelecttedValues)
+            {
+                
+
+            }
+
             if (ModelState.IsValid)
             {
                 User newUser = new User();

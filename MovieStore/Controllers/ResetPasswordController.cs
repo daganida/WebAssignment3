@@ -18,8 +18,9 @@ namespace MovieStore.Controllers
         [ActionName("Index")]
         public ActionResult Index()
         {
-            ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "Title");
-
+            if(TempData["Question"] != null) {
+                ViewBag.Question = TempData["Question"];
+            }
             return View();
         }
         [HttpPost]
@@ -43,10 +44,14 @@ namespace MovieStore.Controllers
                     User u = db.Users.Find(userList.ToList()[0].UserId);
                     if (u != null)
                     {
-                        if (u.QuestionId == user.QuestionId && u.Answer == user.Answer)
+                        if (true)
                         {
                             currUserName = u.UserName;
-                            return View("ResetPassword");
+                            var User = db.Users.SqlQuery("Select * from dbo.Users where dbo.Users.UserName = {0}", currUserName).ToList()[0];
+                            int QuestionId = (int)((User)User).QuestionId;
+                            string Question = db.Questions.SqlQuery("Select * from dbo.Questions where QuestionId = {0}", QuestionId).ToList()[0].Title;
+                            TempData["Question"] = Question;
+                            return RedirectToAction("Index");
                             //meaning he was right about the question and the answer
                         }
                         else
@@ -63,24 +68,8 @@ namespace MovieStore.Controllers
                 return View();
             
         }
-                [HttpPost]
 
-        public ActionResult ResetPassword(NewPassword pass)
-        {
-
-            if (ModelState.IsValid && currUserName != null)
-            {
-                db.Database.ExecuteSqlCommand("UPDATE dbo.Users SET dbo.Users.Passsword = {0} and dbo.Users.ConfirmPassword = {1} WHERE UserName = {2}",pass.NewPass,pass.ConfirmPassword,currUserName);
-                db.SaveChanges();
-                currUserName = null;           
-            }
-
-            
-
-
-            return View();      
-
-        }
+      
 
 
     }
