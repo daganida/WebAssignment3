@@ -15,6 +15,7 @@ namespace MovieStore
         }
         public void OnResultExecuting(ResultExecutingContext filterContext)
         {
+
             //You can do your stuff and set a viewBad value
             var ctx = new MovieStoreEntities();
             string canDoSomething = CookieController.GetCookie("userId");
@@ -26,6 +27,7 @@ namespace MovieStore
                 filterContext.Controller.ViewBag.lastDate = lastDateLogin.ToString();       
             }
             filterContext.Controller.ViewBag.UserName = username;
+       
         }
     }
 }
