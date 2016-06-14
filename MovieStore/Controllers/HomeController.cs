@@ -2,11 +2,8 @@
 using MovieStore.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using MovieStore.ViewModel;
 
 namespace MovieStore.Controllers
 {
@@ -37,10 +34,6 @@ namespace MovieStore.Controllers
              */
 
             return View(top5);
-
-         
-
-   
         }
     
 
@@ -147,6 +140,5 @@ namespace MovieStore.Controllers
         {
             return RedirectToAction("Index", "User");
         }
-
     } 
 }
