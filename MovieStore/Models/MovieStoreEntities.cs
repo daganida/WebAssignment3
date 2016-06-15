@@ -19,6 +19,7 @@ namespace MovieStore.Models
         public DbSet<Country> Countries { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<UserQuestion> UserQuestions { get; set; }
+        public DbSet<UserGenre> UserGenres { get; set; }
 
        
 

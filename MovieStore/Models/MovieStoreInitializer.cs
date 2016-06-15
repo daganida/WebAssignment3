@@ -1,9 +1,18 @@
-﻿using System;
+﻿using MovieStore.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using MovieStore;
+using System.Data;
+using System.Web.UI.WebControls;
+using System.Collections;
+using System.Data.Entity;
+
 
 namespace MovieStore.Models
 {
@@ -87,25 +96,30 @@ namespace MovieStore.Models
                 context.MovieGenres.Add(mg);
             }
 
-            List<Country> Countries = new List<Country>()
 
-        {
+            DropDownList DropDownList1 = new DropDownList();
+            string myXMLfile = System.Web.HttpContext.Current.Server.MapPath("~/countries.xml");
+            DataSet dsStudent = new DataSet();
 
-            new Country() { ID = 1, Name= "United States" },
+                dsStudent.ReadXml(myXMLfile);
+                DropDownList1.DataSource = dsStudent;
+                DropDownList1.DataValueField = "ID";
+                DropDownList1.DataTextField = "Name";
+                DropDownList1.DataBind();
+                int counter = 1;
 
-            new Country() { ID = 2, Name= "Canada" },
+                foreach (ListItem item in DropDownList1.Items)
+                {
+                    Country c = new Country()
+                    {
+                        ID = counter,Name = item.Text
+             
+                    };
+                    context.Countries.Add(c);
+                    counter++;     
 
-            new Country() { ID = 3, Name= "UK" },
-
-            new Country() { ID = 4, Name= "China" },
-
-            new Country() { ID = 5, Name= "Japan" }
-
-        };
-            foreach (Country  c in Countries)
-            {
-                context.Countries.Add(c);
-            }
+                }
+                context.SaveChanges();
 
             List<Order> orderList = new List<Order>()
             {

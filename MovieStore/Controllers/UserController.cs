@@ -24,8 +24,6 @@ namespace MovieStore.Controllers
         // GET: User
         public ActionResult Index()
         {
-            if(db.Countries.ToList().Count == 0)
-            LoadXML();
             ViewBag.CountryId = new SelectList(db.Countries, "ID", "Name");
             ViewBag.QuestionId = new SelectList(db.Questions, "QuestionId", "Title");
             var categories = db.Genres.Select(c => new
@@ -40,52 +38,18 @@ namespace MovieStore.Controllers
           
 
         }
-        public  ListItemCollection LoadXML()
-        {
-            DropDownList DropDownList1 = new DropDownList();
-            string myXMLfile = Server.MapPath("~/countries.xml");
-            DataSet dsStudent = new DataSet();
-
-                dsStudent.ReadXml(myXMLfile);
-                DropDownList1.DataSource = dsStudent;
-                DropDownList1.DataValueField = "ID";
-                DropDownList1.DataTextField = "Name";
-                DropDownList1.DataBind();
-                int counter = 1;
-
-                foreach (ListItem item in DropDownList1.Items)
-                {
-                    Country c = new Country()
-                    {
-                        ID = counter,Name = item.Text
-             
-                    };
-                    db.Countries.Add(c);
-                    counter++;     
-
-                }
-                db.SaveChanges();
-
-
-            return DropDownList1.Items;
-
-        }
+      
         [HttpPost]
 
-        public ActionResult Index( User u)
+        public ActionResult Index(User u,object [] GenreList)
         {
             MultiSelectList l = ViewBag.GenreList;
-            IEnumerable listOfSelecttedValues = l.SelectedValues;
             List<string> genres = new List<string>();
-            foreach (var genre in listOfSelecttedValues)
-            {
-                
-
-            }
+             User newUser = new User();
 
             if (ModelState.IsValid)
             {
-                User newUser = new User();
+               
                 newUser.UserName = u.UserName;
                 newUser.Password = u.Password;
                 newUser.ConfirmPassword = u.ConfirmPassword;
@@ -109,13 +73,22 @@ namespace MovieStore.Controllers
                 uq.QuestionId = newUser.QuestionId;
                 db.UserQuestions.Add(uq);
                 db.SaveChanges();
+                foreach (object o in GenreList)
+                {
+                    UserGenre ug = new UserGenre();
+                    ug.GenreId = Convert.ToInt32(o);
+                    ug.UserId = newUser.UserId;
+                    db.UserGenres.Add(ug);
 
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index", "Login");
 
+                
+
             }
-
             return View();
-
+           
         }
       
 

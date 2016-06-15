@@ -40,18 +40,7 @@ namespace MovieStore.Utilities
             return value;
         }
 
-        public static DateTime getDateExpries(string key)
-        {
-            string value = null;
-            HttpCookie cookie = HttpContext.Current.Request.Cookies[key];
-
-            if (cookie != null)
-            {
-                return cookie.Expires;
-            }
-            return DateTime.Now;
-
-        }
+    
 
 
 

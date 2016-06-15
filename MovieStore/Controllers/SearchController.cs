@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using PagedList;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MovieStore.Utilities.Searching;
 
 namespace MovieStore.Controllers
 {
@@ -15,7 +14,7 @@ namespace MovieStore.Controllers
     public class SearchController : Controller
     {
         MovieStoreEntities db = new MovieStoreEntities();
-        SearchManager sm = new SearchManager();
+      
 
         public ActionResult Index(string sortOrder, string currentFilter, string movieGenre, string searchString, int? page)
         {
