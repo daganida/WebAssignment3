@@ -51,6 +51,20 @@ namespace MovieStore.Controllers
         }
 
 
+        public ActionResult Logout()
+        {
+            if (ModelState.IsValid)
+            {
+
+                   Tuple<bool,string> tuple =  CookieController.RemoveCookie("userId");
+                    TempData["Success"] = "User was logged out successfully.";
+                    return RedirectToAction("Index", "Home");
+            }
+            return View("Index");
+
+        }
+
+
        
 
        

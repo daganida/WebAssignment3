@@ -140,5 +140,12 @@ namespace MovieStore.Controllers
         {
             return RedirectToAction("Index", "User");
         }
+
+        public ActionResult About()
+        {
+
+            return View();
+
+        }
     } 
 }

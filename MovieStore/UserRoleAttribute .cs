@@ -23,11 +23,10 @@ namespace MovieStore
             if (canDoSomething != null)
             {
                 username = ctx.Users.Find(Convert.ToInt32(canDoSomething)).UserName;
-                var lastDateLogin = CookieController.GetCookie("userId");
-  
-                filterContext.Controller.ViewBag.lastDate = lastDateLogin.ToString();       
+                string loginDate = CookieController.lastLoginDate.ToString();
+                filterContext.Controller.ViewBag.lastDate = loginDate;
+                filterContext.Controller.ViewBag.UserName = username;
             }
-            filterContext.Controller.ViewBag.UserName = username;
        
         }
     }
