@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MovieStore.Models.Movie>
+
+@{
+    ViewBag.Title = "MovieStorage";
+}
+
+<h2>Inventory</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+     
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if (Convert.ToInt32(@Html.DisplayFor(modelItem => item.Amount).ToString()) < 3)
+        {
+            <td class="danger">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+
+            <td class="danger">
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+
+        }
+        else
+        {
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        }
+        
+    </tr>
+}
+
+</table>

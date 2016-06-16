@@ -26,6 +26,7 @@ namespace MovieStore
                 string loginDate = CookieController.lastLoginDate.ToString();
                 filterContext.Controller.ViewBag.lastDate = loginDate;
                 filterContext.Controller.ViewBag.UserName = username;
+                filterContext.Controller.ViewBag.IsAdmin = ctx.Users.Find(Convert.ToInt32(canDoSomething)).IsAdmin;
             }
        
         }

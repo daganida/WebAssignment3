@@ -20,6 +20,8 @@ namespace MovieStore.Models
     {
         protected override void Seed(MovieStoreEntities context)
         {
+
+
             List<User> userList = new List<User>()
             {
                 new User(){UserId = 1, UserName = "Beygel", Password="123456",ConfirmPassword = "123456",Email="idandagan@walla.com",FirstName="Hen",LastName="Beygel" },
@@ -43,19 +45,27 @@ namespace MovieStore.Models
             }
 
             List<Movie> movies = new List<Movie>()
-            {
-                new Movie(){MovieId=1, Title = "Titanic", Length =120, Price = 40,Amount=7 },
-                new Movie(){MovieId=2, Title = "The Interview", Length =130, Price = 50,Amount=8  },
-                new Movie(){MovieId=3,Title = "Paranormal Activity", Length =110, Price = 60,Amount=9   },
-                new Movie(){MovieId=4, Title = "Entourage", Length =80, Price = 70,Amount=10  },
-                new Movie(){MovieId = 5,Title = "Troy", Length =85, Price = 80,Amount=11  },
-                new Movie(){MovieId=6, Title = "Gladiator", Length =90, Price = 90,Amount=12  },
-                new Movie(){MovieId = 7,Title = "Neighboors", Length =95, Price = 100,Amount=13  },
-                new Movie(){MovieId = 8, Title = "X-Men", Length =60, Price = 80,Amount=12  },
-                new Movie(){MovieId = 9,Title = "Batman - The Dark Knight", Length =78, Price = 85,Amount=11  },
-                new Movie(){MovieId = 10, Title = "Batman Returns", Length =85, Price = 70,Amount=10  },
-                new Movie(){MovieId = 11, Title = "Simposons", Length =88, Price = 75,Amount=9  },
-                new Movie(){MovieId = 12, Title = "About Love And Other Drugs", Length =92, Price = 60,Amount=8   }
+                        {/*
+                                    public string Description { get; set; }
+                    public string Country { get; set; }
+
+                    public string Director { get; set; }
+
+                    public double IMDBScore { get; set; }
+                          * */
+
+                new Movie(){MovieId=1, Title = "Titanic", Length =120, Price = 40,Amount=7,Date="1997",Description="A seventeen-year-old aristocrat falls in love with a kind, but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",Director="James Cameron",IMDBScore=7.7 },
+                new Movie(){MovieId=2, Title = "The Interview", Length =130, Price = 50,Amount=8,Date="2013",Description="Dave Skylark and producer Aaron Rapoport run the celebrity tabloid show Skylark Tonight. When they land an interview with a surprise fan, North Korean dictator Kim Jong-un, they are recruited by the CIA to turn their trip to Pyongyang into an assassination mission.",Director="James Cameron",IMDBScore=6.6,  },
+                new Movie(){MovieId=3,Title = "Paranormal Activity", Length =110, Price = 60,Amount=9 ,Date="2011",Description="Using a special camera that can see spirits, a family must protect their daughter from an evil entity with a sinister plan.",Director="Gregory Plotkin",IMDBScore=4.6  },
+                new Movie(){MovieId=4, Title = "Entourage", Length =80, Price = 70,Amount=10,Date="2014",Description="Movie star Vincent Chase, together with his boys Eric, Turtle, and Johnny, are back - and back in business with super agent-turned-studio head Ari Gold on a risky project that will serve as Vince's directorial debut.",Director="Doug Ellin",IMDBScore=6.6  },
+                new Movie(){MovieId = 5,Title = "Troy", Length =85, Price = 80,Amount=11,Date="2004",Description="An adaptation of Homer's great epic, the film follows the assault on Troy by the united Greek forces and chronicles the fates of the men involved.",Director="JWolfgang Petersen",IMDBScore=8.5,  },
+                new Movie(){MovieId=6, Title = "Gladiator", Length =90, Price = 90,Amount=12,Date="2000",Description="When a Roman general is betrayed and his family murdered by an emperor's corrupt son, he comes to Rome as a gladiator to seek revenge.",Director="Ridley Scott",IMDBScore=7.7  },
+                new Movie(){MovieId = 7,Title = "Neighboors", Length =95, Price = 100,Amount=13 ,Date="2014",Description="After they are forced to live next to a fraternity house, a couple with a newborn baby do whatever they can to take them down.",Director="Nicholas Stoller",IMDBScore=6.4 },
+                new Movie(){MovieId = 8, Title = "X-Men", Length =60, Price = 80,Amount=12,Date="2000",Description="Two mutants come to a private academy for their kind whose resident superhero team must oppose a terrorist organization with similar powers.",Director="Bryan Singer",IMDBScore=7.4  },
+                new Movie(){MovieId = 9,Title = "Batman - The Dark Knight", Length =78, Price = 85,Amount=11,Date="2005",Description="After training with his mentor, Batman begins his war on crime to free the crime-ridden Gotham City from corruption that the Scarecrow and the League of Shadows have cast upon it.",Director="Christopher Nolan",IMDBScore=8.3  },
+                new Movie(){MovieId = 10, Title = "Batman Returns", Length =85, Price = 70,Amount=10,Date="1992",Description="When a corrupt businessman and the grotesque Penguin plot to take control of Gotham City, only Batman can stop them, while the Catwoman has her own agenda.",Director="Tim Burton",IMDBScore=7 },
+                new Movie(){MovieId = 11, Title = "Simposons", Length =88, Price = 75,Amount=9 ,Date="2009",Description="The satiric adventures of a working-class family in the misfit city of Springfield.",Director="Sam Simon",IMDBScore=8.8 },
+                new Movie(){MovieId = 12, Title = "About Love And Other Drugs", Length =92, Price = 60,Amount=8 ,Date="2010",Description="A young woman suffering from Parkinson's befriends a drug rep working for Pfizer in 1990s Pittsburgh.",Director="Edward Zwick",IMDBScore=6.7 }
             };
             foreach (Movie m in movies)
             {
@@ -119,7 +129,7 @@ namespace MovieStore.Models
                     counter++;     
 
                 }
-                context.SaveChanges();
+              //  context.SaveChanges();
 
             List<Order> orderList = new List<Order>()
             {
@@ -169,9 +179,7 @@ namespace MovieStore.Models
 
 
 
-            try
-            {
-
+           
                 List<Cart> cartList = new List<Cart>()
             {
                 new Cart{UserId = 1,MovieId = 1,Count = 1,CartId = 1},
@@ -185,22 +193,8 @@ namespace MovieStore.Models
                     context.Carts.Add(c);
                 }
 
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
+          
 
-
-
-
-
-
-
-
-
-
-
-            }
         }
     }
 

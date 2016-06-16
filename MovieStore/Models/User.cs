@@ -17,15 +17,15 @@ namespace MovieStore.Models
         [Display(Name = "User Name")]
         [StringLength(8, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         [System.Web.Mvc.Remote("IsUID_Available", "Validation", HttpMethod = "POST")]
-        [RegularExpression(@"^[A-Z][a-z]",
-        ErrorMessage = "User name contains charchaters only.")]
+     //   [RegularExpression(@"^[A-Z][a-z]",
+        //ErrorMessage = "User name contains charchaters only.")]
         //end of restrictions
 
         
         public string UserName { get; set; }
 
-        [RegularExpression(@"^[0-9]",
-        ErrorMessage = "Password contains digis only.")]
+     //   [RegularExpression(@"^[0-9]",
+      //  ErrorMessage = "Password contains digis only.")]
         //password restrictions
         [Required]
         [StringLength(10, ErrorMessage = "Password must be between 5 to 10 digits..", MinimumLength = 5)]
@@ -96,8 +96,10 @@ namespace MovieStore.Models
         }
         public string Description { get; set; }
 
+        public bool IsAdmin { get; set; }
 
- 
+
+
         
 
 

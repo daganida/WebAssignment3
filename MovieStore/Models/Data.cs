@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -27,10 +30,20 @@ namespace MovieStore.Models
         }
         public void updateDictionary()
         {
-            var movieList = db.Movies;
-            foreach (Movie m in movieList)
+            try
             {
-                MovieNames[m.MovieId] = m.Title;
+                var movieList = db.Movies;
+                foreach (Movie m in movieList)
+                {
+                    MovieNames[m.MovieId] = m.Title;
+                }
+            }
+            catch (DataException dbEx)
+            {
+                foreach (var validationErrors in dbEx.Data)
+                {
+                   
+                }
             }
 
         }

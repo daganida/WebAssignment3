@@ -7,11 +7,7 @@ namespace MovieStore.Models
     public class Movie
     {
 
-        public Movie()
-        {
-            this.Date = DateTime.Now;
-
-        }
+   
 
         public int MovieId { get; set; }
         public string Title { get; set; }
@@ -22,7 +18,15 @@ namespace MovieStore.Models
 
         public int Amount { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
+
+        public string Description { get; set; }
+
+        public string Director { get; set; }
+
+        public double IMDBScore { get; set; }
+
+
 
         public virtual ICollection<MovieGenre> MovieGenres { get; set; }
 

@@ -16,6 +16,7 @@
     ViewBag.Title = "Index";
     var username = ViewBag.UserName != null;
     var lastvisit = (string)ViewBag.lastDate;
+    var isadmin = ViewBag.IsAdmin != null && (bool)ViewBag.IsAdmin;
 }
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -31,6 +32,30 @@
                             <span class="glyphicon"> About</span>
                         </a>
                     </li>
+                    @if (isadmin != null && @ViewBag.IsAdmin == true)
+                    {
+                        <li>
+                            <a href="@Url.Action("ViewOrders", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                <span  class="alert-info">Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("MovieDetails", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                <span class="alert-info">Information</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("MovieStorage", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                <span class="alert-info">Storage</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("ShowClientDetails", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                <span class="alert-info">Clients</span>
+                            </a>
+                        </li>
+
+                    }
                    
                 </ul>
                
