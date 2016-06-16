@@ -72,5 +72,9 @@ namespace MovieStore.Controllers
             IPagedList list = movies.ToPagedList(pageNumber, pageSize);
             return View(list);
         }
+        public ActionResult openMovieDetails()
+        {
+            return PartialView(return PartialView("/path/view.cshtml");)
+        }
     }
 }

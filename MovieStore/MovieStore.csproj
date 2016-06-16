@@ -168,6 +168,9 @@
     <Content Include="Views\Carts\PaymentHandler.cshtml" />
     <Content Include="Views\ResetPassword\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\OrderHistory\Index.cshtml" />
+    <Content Include="Views\OrderHistory\OrderDetails.cshtml" />
+    <Content Include="Views\Home\MovieDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +203,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartsController.cs" />
+    <Compile Include="Controllers\OrderHistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ResetPasswordController.cs" />
