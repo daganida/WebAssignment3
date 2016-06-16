@@ -11,9 +11,21 @@
    
 
 }
-@Html.ActionLink("Create New Cart Item", "Create")
+<div>
+    <br />
+    <br />
 
-<h2>Index</h2>
+    <h3 style="text-align:center;">Hello @ViewBag.cartOwner ! You can choose to add or remove items from your cart.</h3>
+    <br />
+    <br />
+</div>
+<div>
+
+    <test style="margin-left:180px;">@Html.ActionLink("Create New Item", "Create", "Carts", null, new { @class = "btn btn-primary btn-large" })</test>
+    <br />
+</div>
+
+
 <p class="text-danger">@ViewBag.errorAmount</p>
 
 
@@ -21,18 +33,14 @@
 <table class="table">
 
     <tr>
-        <th>
+        <th style="width:20%;" class="table-hover">
             @Html.DisplayNameFor(model => model.Movie.Title)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
+   
+        <th style="width:20%; class=" table-hover">
             @Html.DisplayNameFor(model => model.Count)
-
-
         </th>
-        <th></th>
+        <th>Add/Sub</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -41,42 +49,33 @@
             @Html.DisplayFor(modelItem => item.Movie.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Count)
-            
-
-
         </td>
         <td>
-            @Html.ActionLink("Add", "Add", new { id=item.CartId })
+            @Html.ActionLink("Add", "Add", new { id = item.CartId })&nbsp&nbsp&nbsp @Html.ActionLink("Delete", "Delete", new { id = item.CartId })
             </td>
-        <td>
-          
-            @Html.ActionLink("Delete", "Delete", new { id=item.CartId })
-        
-        </td>
+
     </tr>
 }
+  
 
 </table>
+
 <br />
 <br />
 <br />
 <br />
 <br />
 <br />
-<div style="width:50%;">
     <table class="table">
         <tr>
             
-            <th style="text-align:center;width:33%;">User Name
+            <th style="width:20%;">User Name
             </th>
-            <th style="text-align:center;width:33%;">
+            <th style="width:20%;">
                 Total Number Of Different Products
             </th>
-            <th style="text-align:center;width:33%;">
+            <th >
                 Total Value Of Cart
             </th>
         </tr>
@@ -84,21 +83,22 @@
     </table>
     <table class="table">
         <tr>
-            <td style="text-align:center;width:33%;">
+            <td style="width:20%;">
                 @ViewBag.cartOwner
 
             </td>
-            <td style="text-align:center;width:33%;">
+            <td style="width:20%;">
                 @ViewBag.itemsTotalDifferentProducts
             </td>
-            <td style="text-align:center;width:33%;">
+            <td>
                 @ViewBag.itemsTotalValue
             </td>
-            
-</tr>
-        
+             
 
     </table>
+    @if (ViewBag.itemsTotalDifferentProducts != null && ViewBag.itemsTotalDifferentProducts>0)
+    { 
 
     <test style="margin-left:230px;">@Html.ActionLink("Go To Payment", "PaymentHandler", "Carts", null, new { @class = "btn btn-primary btn-large" })</test>
-</div>
+    }
+

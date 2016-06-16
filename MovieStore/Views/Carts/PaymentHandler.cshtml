@@ -9,6 +9,7 @@
     var mail = (string)ViewBag.mail;
     var cellular = (string)ViewBag.cell;
     var userAddress = (string)ViewBag.address;
+    var orderid = (string)ViewBag.orderId;
 
     
 
@@ -49,10 +50,14 @@
 
 
  
-<test>@Html.ActionLink("Confirm Transaction", "ConfirmTransaction", "Carts", null, new { @class = "btn btn-primary btn-large" })</test>
+<test>@Html.ActionLink("Confirm Transaction", "ConfirmTransaction", "Carts", null, new { @class = "btn btn-primary btn-large", onclick = "return SetTextBoxValue()" })</test>
 
 
 
+<script>
+    function SetTextBoxValue() {
+        alert("Thank you for buying from MovieStore Online! we recieved your payment, and we hope to see you in the future!");
 
 
-
+    };
+</script>

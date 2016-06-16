@@ -322,18 +322,12 @@ namespace MovieStore.Controllers
                 
                 db.Database.ExecuteSqlCommand("UPDATE dbo.Orders SET TotalAmountValue = TotalAmountValue + {0} WHERE OrderId = {1}", totalOrderValue, o.OrderId);
                 db.SaveChanges();
-
-
-                
-
+                ViewBag.orderId = o.OrderId;
             }
 
-            return RedirectToAction("Index");
-
-
-
-
+            return RedirectToAction("Index", "Home");          
 
         }
+       
     }
 }
