@@ -1,4 +1,10 @@
 ﻿
+
+
+
+
+
+
 @{
     ViewBag.Title = "PaymentHandler";
     ViewBag.TotalValue = (double)ViewBag.itemsTotalValue;
@@ -10,38 +16,79 @@
     var cellular = (string)ViewBag.cell;
     var userAddress = (string)ViewBag.address;
     var orderid = (string)ViewBag.orderId;
+    var date = (string)ViewBag.Date;
+        
 
     
 
 }
 
+
 <h2>Payment Information</h2>
+<div>
+    <label><strong>User Name : </strong>@ViewBag.cartOwner</label>
+    <br />
+    <label>
+        <strong>First Name :</strong>@ViewBag.first
+    </label>
+    <br />
+    <label>
+        <strong>Last Name :</strong>@ViewBag.last
+    </label>
+    <br />
+    <label>
+        <strong>Mail :</strong>@ViewBag.mail
+    </label>
+    <br />
+    <label>
+        <strong>Cellular :</strong>@ViewBag.cell
+    </label>
+    <br />
+    <label>
+        <strong>Address :</strong>@ViewBag.address
+    </label>
+    <br />
+    <label>
+        <strong>Total Different Items :</strong>@ViewBag.itemsTotalDifferentProducts
+    </label>
+    <br />
+    <label>
+        <strong>Total Value :</strong>@ViewBag.itemsTotalValue
+    </label>
+    <br />
+    <input type="date" id="date" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.Date)" />
+
+
+
+    <br />
+    <test>@Html.ActionLink("Confirm Transaction", "ConfirmTransaction", "Carts", null, new { @class = "btn btn-primary btn-large", onclick = "return SetTextBoxValue()" })</test>
+
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker();
+    })
+</script>
+<script>
+    function setUserID(myValue) {
+        $('#date').val(myValue)
+                    .trigger('change');
+    }
+</script>
+<script>
+    $('#date').change(function () {
+         @ViewBag.Date = $(this).attr("date")
+
+        //fire your ajax call
+    })
+</script>
+
 
 
      
-            <label><strong>User Name : </strong>@ViewBag.cartOwner</label> 
-            <br />
-            <label><strong>First Name :</strong>@ViewBag.first
-            </label>
-            <br />
-            <label><strong>Last Name :</strong>@ViewBag.last
-            </label>
-            <br />
-            <label><strong>Mail :</strong>@ViewBag.mail
-            </label>
-            <br />
-            <label><strong>Cellular :</strong>@ViewBag.cell
-            </label>
-            <br />
-            <label><strong>Address :</strong>@ViewBag.address
-            </label>
-            <br />
-            <label><strong>Total Different Items :</strong>@ViewBag.itemsTotalDifferentProducts
-            </label>
-            <br />
-            <label><strong>Total Value :</strong>@ViewBag.itemsTotalValue
-            </label>
-            <br />
+           
 
 
 
@@ -50,7 +97,6 @@
 
 
  
-<test>@Html.ActionLink("Confirm Transaction", "ConfirmTransaction", "Carts", null, new { @class = "btn btn-primary btn-large", onclick = "return SetTextBoxValue()" })</test>
 
 
 
@@ -61,3 +107,4 @@
 
     };
 </script>
+

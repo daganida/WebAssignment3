@@ -178,6 +178,7 @@
     <Content Include="Views\StoraManage\Edit.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\StoraManage\ShowClientDetails.cshtml" />
+    <Content Include="Views\Home\MovieDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

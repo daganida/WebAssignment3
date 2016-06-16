@@ -228,6 +228,7 @@ namespace MovieStore.Controllers
 
         public ActionResult PaymentHandler()
         {
+            ViewBag.Date = DateTime.Now.ToString();
             ViewBag.itemsTotalValue = 0;
             ViewBag.itemsTotalDifferentProducts = 0;
             ViewBag.cartOwner = "";
@@ -281,7 +282,7 @@ namespace MovieStore.Controllers
             return View();
         }
 
-        public ActionResult ConfirmTransaction()
+        public ActionResult ConfirmTransaction(string   Date)
         {
             string userLoggedIn = CookieController.GetCookie("userId");
             double totalOrderValue = 0;
