@@ -74,7 +74,7 @@ namespace MovieStore.Controllers
         }
         public ActionResult openMovieDetails()
         {
-            return PartialView(return PartialView("/path/view.cshtml");)
+            return PartialView("~/path/view.cshtml");)
         }
     }
 }
