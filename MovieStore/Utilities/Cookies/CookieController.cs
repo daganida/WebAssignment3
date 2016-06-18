@@ -10,7 +10,6 @@ namespace MovieStore.Utilities
     public class CookieController
     {
         static readonly int COOKIE_EXPIRE_DAYS = 30;
-        public static DateTime lastLoginDate;
 
 
         public static void SetCookie(string key, string value)
@@ -24,13 +23,13 @@ namespace MovieStore.Utilities
                 var cookieOld = HttpContext.Current.Request.Cookies[key];
                 cookieOld.Expires = DateTime.Now.AddDays(COOKIE_EXPIRE_DAYS);
                 cookieOld.Value = cookie.Value;
-                lastLoginDate = cookieOld.Expires.AddDays(-30);
                 HttpContext.Current.Response.Cookies.Add(cookieOld);
             }
             else
             {
                 cookie.Expires = DateTime.Now.AddDays(COOKIE_EXPIRE_DAYS);
                 HttpContext.Current.Response.Cookies.Add(cookie);
+
             }
         }
 
@@ -44,6 +43,15 @@ namespace MovieStore.Utilities
             }
 
             return value;
+        }
+        public static DateTime getCookieDate()
+        {
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["userId"];
+            if (cookie.Expires.Year > 2000)
+                return cookie.Expires.AddDays(-30);
+            else return DateTime.Now;
+
+
         }
 
     

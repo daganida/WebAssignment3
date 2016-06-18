@@ -23,7 +23,7 @@ namespace MovieStore
             if (canDoSomething != null)
             {
                 username = ctx.Users.Find(Convert.ToInt32(canDoSomething)).UserName;
-                string loginDate = CookieController.lastLoginDate.ToString();
+                string loginDate = CookieController.getCookieDate().ToString();
                 filterContext.Controller.ViewBag.lastDate = loginDate;
                 filterContext.Controller.ViewBag.UserName = username;
                 filterContext.Controller.ViewBag.IsAdmin = ctx.Users.Find(Convert.ToInt32(canDoSomething)).IsAdmin;

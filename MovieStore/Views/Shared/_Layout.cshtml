@@ -69,8 +69,13 @@
 
                     <ul class="nav navbar-nav navbar-right"> 
                             <li class="dropdown">
+                                @if (username)
+                                {
+                                    <label class="label-success">Last day visit : @ViewBag.lastdate</label>
+
+                                }
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                    Welcome @ViewBag.UserName <span class="caret"></span>
+                                    Welcome @ViewBag.UserName <span class="caret"></span><br />
                                 </a>
                                
                                 <ul class="dropdown-menu">
