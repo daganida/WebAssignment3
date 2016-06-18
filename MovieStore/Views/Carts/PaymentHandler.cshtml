@@ -61,7 +61,7 @@
                                               new { enctype = "multipart/form-data" }))
         {
             <fieldset>
-                Select a Delivery date <input type="date" name="date" value="@ViewBag.WorkDate.ToString("yyyy-MM-dd")" />
+                Select a Delivery date <input style="height:25px;" type="date" name="date" value="@ViewBag.WorkDate.ToString("yyyy-MM-dd")" />
                 <input type="submit" value="Set Date" />
             </fieldset>
             <p class="text-warning">Don't forget to push the "Set Date" button after choosing a date.!</p>

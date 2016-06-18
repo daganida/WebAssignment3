@@ -3269,8 +3269,9 @@ input[type="button"].btn-block {
   background-color: #e5e5e5;
 }
 
+
 .dropdown-menu > li > a {
-  display: block;
+  display: inline-block;
   padding: 3px 20px;
   clear: both;
   font-weight: normal;
@@ -4244,6 +4245,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-nav {
   margin: 7.5px -15px;
+  
 }
 
 .navbar-nav > li > a {

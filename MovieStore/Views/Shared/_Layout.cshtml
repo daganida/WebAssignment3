@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Music Store Online</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DropDown.css" rel="stylesheet" type="text/css" />
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -17,6 +19,8 @@
     ViewBag.Title = "Index";
     var username = ViewBag.UserName != null;
     var lastvisit = (string)ViewBag.lastDate;
+    var isadmin = ViewBag.IsAdmin != null && (bool)ViewBag.IsAdmin;
+
 }
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -27,8 +31,42 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="Search"><span class="glyphicon glyphicon-search"></span> Search Movies</a></li>
+                    @if (isadmin != null && @ViewBag.IsAdmin == true)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Admin Tools <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="@Url.Action("ViewOrders", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                        <span >Orders</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("MovieDetails", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                        <span >Information</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("MovieStorage", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                        <span >Storage</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("ShowClientDetails", null, new { area = string.Empty, controller = "StoraManage" }, Request.Url.Scheme)">
+                                        <span >Clients</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    }
+
                 </ul>
                 <div id="navbar" class="navbar-collapse collapse">
+                    
+
                     <ul class="nav navbar-nav navbar-right">
                         @if (!username)
                         {
@@ -37,20 +75,22 @@
                         }
                         else
                         {
-                            <li class="dropdown open">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                     Welcome @ViewBag.UserName <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                                <li><a href="OrderHistory"><span class="glyphicon glyphicon-time"></span> Order History</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-                            </ul>
-                        </li>
+                                </a>
+                               
+                                <ul class="dropdown-menu">
+                                    <li><a href="Carts"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                                    <li><a href="OrderHistory"><span class="glyphicon glyphicon-time"></span> Order History</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                                </ul>
+                            </li>
                         }
 
                     </ul>
+                    
                 </div><!--/.nav-collapse -->
             </div>
 

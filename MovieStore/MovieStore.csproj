@@ -150,6 +150,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\DropDown.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Error.cshtml" />

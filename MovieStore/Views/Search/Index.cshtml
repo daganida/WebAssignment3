@@ -1,9 +1,11 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<MovieStore.Models.Movie>
+@model Tuple<PagedList.IPagedList<MovieStore.Models.Movie>, IEnumerable<MovieStore.Models.Movie>>
 
 
     @{
         ViewBag.Title = "Search Results";
+        var searchResults = Model.Item1;
+        var recomendedMovies = Model.Item2 as IEnumerable<MovieStore.Models.Movie>;
     }
     <br />
     <br />
@@ -20,16 +22,23 @@
         </fieldset>
 
     }
+<div>
+    <label>Search Results</label>
+    <br />
+   <br />
+
+</div>
+
 
     <table class="table">
         <tr>
-            <th>
+            <th style="width:228px;">
                 @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            <th>
+            <th style="width:239px;">
                 @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            <th>
+            <th style="width:260px;">
                 @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
@@ -37,7 +46,7 @@
             </th>
             <th></th>
         </tr>
-        @foreach (var item in Model)
+        @foreach (var item in searchResults)
         {
             <tr>
                 <td>
@@ -56,14 +65,53 @@
                         <br />
                     }
                 </td>
-                <td>
-                    @Html.ActionLink("details", "openMovieDetails");
-                </td>
+
             </tr>
         }
     </table>
-    <br />
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+<label>Most 5 popular Movies We recommend for you</label>
+<table class="table">
+    <tr>
+        <th style="width:228px;">
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th style="width:239px;">
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th style="width:260px;">
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Genres
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in recomendedMovies)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @foreach (var genre in item.MovieGenres)
+                {
+                    @Html.DisplayFor(modelItem => genre.Genre.TItle);
+                    <br />
+                }
+            </td>
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
+        </tr>
+    }
+</table>
+
+    <br />
+    Page @(searchResults.PageCount < searchResults.PageNumber ? 0 : searchResults.PageNumber) of @searchResults.PageCount
+
+    @Html.PagedListPager(searchResults, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
