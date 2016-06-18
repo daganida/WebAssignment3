@@ -349,6 +349,8 @@ namespace MovieStore.Controllers
                     }
                     HttpContext.Application["date"] = null;
                     HttpContext.Application["tempdate"] = null;
+                    HttpContext.Application["cameFromSet"] = null;
+
 
                     return RedirectToAction("Index", "Home");
                 
