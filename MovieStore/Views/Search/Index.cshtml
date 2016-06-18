@@ -72,6 +72,12 @@
             </tr>
         }
     </table>
+
+    Page @(searchResults.PageCount < searchResults.PageNumber ? 0 : searchResults.PageNumber) of @searchResults.PageCount
+
+
+    @Html.PagedListPager(searchResults, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 <label>Most 5 popular Movies We recommend for you</label>
 <table class="table">
     <tr>
@@ -114,10 +120,6 @@
 </table>
 
     <br />
-    Page @(searchResults.PageCount < searchResults.PageNumber ? 0 : searchResults.PageNumber) of @searchResults.PageCount
 
-
- @Html.PagedListPager(searchResults, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 
 
