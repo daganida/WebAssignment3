@@ -228,6 +228,24 @@ namespace MovieStore.Controllers
 
         public ActionResult PaymentHandler()
         {
+            if (HttpContext.Application["date"] != null)
+            {
+                ViewBag.WorkDate = HttpContext.Application["date"];
+                ViewBag.validDate = HttpContext.Application["date"];
+            }
+            else if (HttpContext.Application["tempdate"] != null)
+            {
+                ViewBag.WorkDate = HttpContext.Application["tempdate"];
+            }
+
+            else
+            {
+                ViewBag.WorkDate = DateTime.Now;
+            }
+            if (TempData["error"] != null)
+            {
+                ViewBag.DateError = TempData["error"];
+            }
             ViewBag.Date = DateTime.Now.ToString();
             ViewBag.itemsTotalValue = 0;
             ViewBag.itemsTotalDifferentProducts = 0;
@@ -282,51 +300,93 @@ namespace MovieStore.Controllers
             return View();
         }
 
-        public ActionResult ConfirmTransaction(string   Date)
+        public ActionResult ConfirmTransaction(FormCollection fl)
         {
-            string userLoggedIn = CookieController.GetCookie("userId");
-            double totalOrderValue = 0;
-            Order o = new Order()
-            {
-                Date = DateTime.Now,
-                UserId = Convert.ToInt32(userLoggedIn),
-            };
-           db.Orders.Add(o);
-            db.SaveChanges();
-            
-            if (ModelState.IsValid)
-            {
-                //now to reduce all items from database
-                IList<Cart> carts =(IList<Cart>) db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0}", userLoggedIn).ToList();
 
-                foreach (Cart c in carts)
-                {
-                    
-                    //we need to update MovieOrders,Orders,Cart,Movies
 
-                    //first lets remove from Movies.
-                    db.Database.ExecuteSqlCommand("UPDATE dbo.Movies SET Amount = Amount- {0} WHERE MovieId = {1}",c.Count,c.MovieId);
-                    var currMoviePrice = db.Movies.SqlQuery("Select * from dbo.Movies where dbo.Movies.MovieId = {0}", c.MovieId).ToList();
-                    totalOrderValue += c.Count * currMoviePrice[0].Price;
-
-                    //now we create new movieOrder for each cart
-                    MovieOrder mo = new MovieOrder()
+                    string userLoggedIn = CookieController.GetCookie("userId");
+                    double totalOrderValue = 0;
+                    Order o = new Order()
                     {
-                        OrderId = o.OrderId,Amount = c.Count,MovieId = c.MovieId
+                        Date = DateTime.Now,
+                        UserId = Convert.ToInt32(userLoggedIn),
                     };
-                    db.MovieOrders.Add(mo);
-                    //now we remove the cart.
-                    db.Carts.Remove(c);
-                    //now we add to orders
-                    //now we add remove from Cart         
-                }
-                
-                db.Database.ExecuteSqlCommand("UPDATE dbo.Orders SET TotalAmountValue = TotalAmountValue + {0} WHERE OrderId = {1}", totalOrderValue, o.OrderId);
-                db.SaveChanges();
-                ViewBag.orderId = o.OrderId;
-            }
+                    db.Orders.Add(o);
+                    db.SaveChanges();
 
-            return RedirectToAction("Index", "Home");          
+                    if (ModelState.IsValid)
+                    {
+                        //now to reduce all items from database
+                        IList<Cart> carts = (IList<Cart>)db.Carts.SqlQuery("Select * from dbo.Carts where dbo.Carts.UserId = {0}", userLoggedIn).ToList();
+
+                        foreach (Cart c in carts)
+                        {
+
+                            //we need to update MovieOrders,Orders,Cart,Movies
+
+                            //first lets remove from Movies.
+                            db.Database.ExecuteSqlCommand("UPDATE dbo.Movies SET Amount = Amount- {0} WHERE MovieId = {1}", c.Count, c.MovieId);
+                            var currMoviePrice = db.Movies.SqlQuery("Select * from dbo.Movies where dbo.Movies.MovieId = {0}", c.MovieId).ToList();
+                            totalOrderValue += c.Count * currMoviePrice[0].Price;
+
+                            //now we create new movieOrder for each cart
+                            MovieOrder mo = new MovieOrder()
+                            {
+                                OrderId = o.OrderId,
+                                Amount = c.Count,
+                                MovieId = c.MovieId
+                            };
+                            db.MovieOrders.Add(mo);
+                            //now we remove the cart.
+                            db.Carts.Remove(c);
+                            //now we add to orders
+                            //now we add remove from Cart         
+                        }
+
+                        db.Database.ExecuteSqlCommand("UPDATE dbo.Orders SET TotalAmountValue = TotalAmountValue + {0} WHERE OrderId = {1}", totalOrderValue, o.OrderId);
+                        db.SaveChanges();
+                        ViewBag.orderId = o.OrderId;
+                    }
+                    HttpContext.Application["date"] = null;
+                    HttpContext.Application["tempdate"] = null;
+
+                    return RedirectToAction("Index", "Home");
+                
+
+           
+         
+           
+
+        }
+        public ActionResult SetDate(FormCollection fl)
+        {
+            if (fl.AllKeys.ToList().Count > 0)
+            {
+                DateTime date = Convert.ToDateTime(fl["date"]);
+                if (date < DateTime.Now.AddDays(7))
+                {
+                    HttpContext.Application["tempdate"] = date;
+                    HttpContext.Application["date"] = null;
+                    string DateError = "The date you provided is not legal. you can only choose 7 days from today or higher.";
+                    TempData["error"] = DateError;
+                    return RedirectToAction("PaymentHandler");
+                }
+                else
+                {
+                    HttpContext.Application["date"] = date;
+                    TempData["cameFromSet"] = true;
+                    return RedirectToAction("PaymentHandler");
+
+                }
+            }
+            else
+            {
+                string DateError = "You must Set the date before you can continue.";
+                TempData["error"] = DateError;
+                HttpContext.Application["date"] = null;
+                return RedirectToAction("PaymentHandler");
+
+            }
 
         }
        

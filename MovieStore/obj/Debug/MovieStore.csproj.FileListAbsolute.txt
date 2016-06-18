@@ -139,3 +139,4 @@ Z:\WebAssignment3\MovieStore\bin\PagedList.dll
 Z:\WebAssignment3\MovieStore\bin\PagedList.Mvc.dll
 Z:\WebAssignment3\MovieStore\bin\PagedList.xml
 Z:\WebAssignment3\MovieStore\bin\PagedList.Mvc.xml
+Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache

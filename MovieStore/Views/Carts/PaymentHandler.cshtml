@@ -17,6 +17,7 @@
     var userAddress = (string)ViewBag.address;
     var orderid = (string)ViewBag.orderId;
     var date = (string)ViewBag.Date;
+    var dateerror = (string)ViewBag.DateError;
         
 
     
@@ -56,34 +57,60 @@
         <strong>Total Value :</strong>@ViewBag.itemsTotalValue
     </label>
     <br />
-    <input type="date" id="date" value="@string.Format("{0:yyyy-MM-dd}", ViewBag.Date)" />
+        @using (Html.BeginForm("SetDate", "Carts", FormMethod.Post,
+                                              new { enctype = "multipart/form-data" }))
+        {
+            <fieldset>
+                Select a Delivery date <input type="date" name="date" value="@ViewBag.WorkDate.ToString("yyyy-MM-dd")" />
+                <input type="submit" value="Set Date" />
+            </fieldset>
+            <p class="text-warning">Don't forget to push the "Set Date" button after choosing a date.!</p>
+            <p class="text-danger">@ViewBag.DateError</p>
+        }
 
 
 
     <br />
+    @if (ViewBag.validDate != null)
+    { 
     <test>@Html.ActionLink("Confirm Transaction", "ConfirmTransaction", "Carts", null, new { @class = "btn btn-primary btn-large", onclick = "return SetTextBoxValue()" })</test>
+    }
+    else
+    {
+        
+    }
 
 
 </div>
-<script type="text/javascript">
-    $(function () {
-        // This will make every element with the class "date-picker" into a DatePicker element
-        $('.date-picker').datepicker();
-    })
-</script>
-<script>
-    function setUserID(myValue) {
-        $('#date').val(myValue)
-                    .trigger('change');
-    }
-</script>
 <script>
     $('#date').change(function () {
-         @ViewBag.Date = $(this).attr("date")
+        alert("changed");
 
-        //fire your ajax call
-    })
+        var date = $('#date').val();
+
+
+    });
+    
+    /*
+
+    previousVal = "";
+    function InputChangeListener() {
+        if ($('#date').val()
+           != previousVal) {
+            previousVal = $('#date').val();
+            $('#date').change();
+        }
+    }
+
+    setInterval(InputChangeListener, 500);
+    */
+   /*
+
+    $('#date').val(3);
+    */
+
 </script>
+
 
 
 
