@@ -12,23 +12,24 @@ namespace MovieStore.Models
     public class User
     {
 
-        public int UserId { get; set; }       
+        public int UserId { get; set; }
+     [RegularExpression("^[A-z]*$", ErrorMessage = "User name contains charchaters only.")]
+
         //user name restrictions
         [Required]
         [Display(Name = "User Name")]
-        [StringLength(8, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(8, ErrorMessage = "The {0} must be at least between 3 to 8 characters long.", MinimumLength = 3)]
         [System.Web.Mvc.Remote("IsUID_Available", "Validation", HttpMethod = "POST")]
-     //   [RegularExpression(@"^[A-Z][a-z]",
-        //ErrorMessage = "User name contains charchaters only.")]
+
         //end of restrictions
 
         
         public string UserName { get; set; }
+                [Required]
 
-        [RegularExpression(@"^\d$",
-        ErrorMessage = "Password contains digis only.")]
+        [RegularExpression("^[0-9]*$",
+        ErrorMessage = "Password can contains digis only.")]
         //password restrictions
-        [Required]
         [StringLength(10, ErrorMessage = "Password must be between 5 to 10 digits..", MinimumLength = 5)]
         [DataType(DataType.Password)]
         //end of restrictions
