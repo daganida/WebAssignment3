@@ -52,12 +52,12 @@
                 <td>
                     @foreach (var genre in item.MovieGenres)
                     {
-                        @Html.DisplayFor(modelItem => genre.Genre.TItle);
+                        @Html.DisplayFor(modelItem => genre.Genre.TItle)
                         <br />
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("details", "openMovieDetails");
+                    @Html.ActionLink("details", "openMovieDetails", new { id = item.MovieId })
                 </td>
             </tr>
         }

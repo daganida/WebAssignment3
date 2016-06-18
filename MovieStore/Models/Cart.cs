@@ -17,6 +17,5 @@ namespace MovieStore.Models
 
         public virtual User User { get; set; }
         public virtual Movie Movie { get; set; }
-
     }
 }

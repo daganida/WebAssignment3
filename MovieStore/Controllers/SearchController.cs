@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using PagedList;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Net;
+using MovieStore.Utilities;
 
 namespace MovieStore.Controllers
 {
@@ -30,7 +32,7 @@ namespace MovieStore.Controllers
             ViewBag.NameSortParm = "Name";
             ViewBag.DateSortParm = "Date";
             ViewBag.PriceSortParm ="Price";
-
+            movieGenre = String.IsNullOrEmpty(movieGenre) ? "" : movieGenre;
             if (searchString != null)
             {
                 page = 1;
@@ -43,7 +45,7 @@ namespace MovieStore.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var movies = from s in db.MovieGenres
-                           where s.Genre.TItle == movieGenre
+                           where s.Genre.TItle.Contains(movieGenre)
                            select s.Movie;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -72,9 +74,30 @@ namespace MovieStore.Controllers
             IPagedList list = movies.ToPagedList(pageNumber, pageSize);
             return View(list);
         }
-        public ActionResult openMovieDetails()
+        public ActionResult openMovieDetails(int? id)
         {
-            return PartialView("~/path/view.cshtml");)
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("~/Views/Home/MovieDetails.cshtml", movie);
+        }
+
+        public ActionResult BuyMovie(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            string userId = CookieController.GetCookie("userId");
+
+            CartsController.addNewCartToDB(Int32.Parse(userId), id.Value);
+            return RedirectToAction("Index");
         }
     }
 }
