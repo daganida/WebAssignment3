@@ -140,3 +140,4 @@ Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Deployment.xml
 Z:\WebAssignment3\MovieStore\bin\System.Web.WebPages.Razor.xml
 Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.dll
 Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.pdb
+Z:\WebAssignment3\MovieStore\obj\Debug\MovieStore.csprojResolveAssemblyReference.cache

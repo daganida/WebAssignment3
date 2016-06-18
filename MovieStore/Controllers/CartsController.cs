@@ -388,7 +388,20 @@ namespace MovieStore.Controllers
         {
             var db = new MovieStoreEntities();
             Cart newCart = new Cart { UserId = userId, MovieId = movieId, Count = 1 };
-            db.Carts.Add(newCart);
+            var currCart = db.Carts.SqlQuery("select * from carts where dbo.Carts.UserId = {0} and dbo.Carts.MovieId = {1}",userId,movieId);
+            if (currCart.ToList().Count > 0)
+            {
+                //meaning its already exist
+                db.Database.ExecuteSqlCommand("UPDATE dbo.Carts SET Count = Count+1 WHERE dbo.Carts.UserId = {0} and dbo.Carts.MovieId = {1} ", userId,movieId);
+
+                
+            }
+            else
+            {
+                //meaning its a new cart.
+                db.Carts.Add(newCart);
+
+            }
             db.SaveChangesAsync();
         }
     }
