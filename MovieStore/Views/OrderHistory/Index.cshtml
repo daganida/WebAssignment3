@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.ActionLink("view", "Order");
+            @Html.ActionLink("Show Order", "OrderDetails", new { id = item.OrderId })
         </td>
     </tr>
 }
