@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using MovieStore.Controllers;
+using Newtonsoft.Json;
 
 namespace MovieStore.Models
 {
@@ -24,8 +25,8 @@ namespace MovieStore.Models
         
         public string UserName { get; set; }
 
-     //   [RegularExpression(@"^[0-9]",
-      //  ErrorMessage = "Password contains digis only.")]
+        [RegularExpression(@"^\d$",
+        ErrorMessage = "Password contains digis only.")]
         //password restrictions
         [Required]
         [StringLength(10, ErrorMessage = "Password must be between 5 to 10 digits..", MinimumLength = 5)]

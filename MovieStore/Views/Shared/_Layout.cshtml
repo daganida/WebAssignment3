@@ -67,14 +67,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     
 
-                    <ul class="nav navbar-nav navbar-right">
-                        @if (!username)
-                        {
-                            <li><a href="User"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="Login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-                        }
-                        else
-                        {
+                    <ul class="nav navbar-nav navbar-right"> 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                     Welcome @ViewBag.UserName <span class="caret"></span>
@@ -83,11 +76,19 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="Carts"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                                     <li><a href="OrderHistory"><span class="glyphicon glyphicon-time"></span> Order History</a></li>
+                                    
+
+
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                                    @if (!username)
+                                    {
+                                        <li><a href="User"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                        <li><a href="Login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                                    }
+                                    <li><a href="Login/Logout"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
                                 </ul>
                             </li>
-                        }
+                        
 
                     </ul>
                     
